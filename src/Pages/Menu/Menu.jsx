@@ -1,13 +1,15 @@
-import { ButtonsMenu, ButtonGame, LogoGame, Temas, TitleJob, PageContainer } from './style.js';
+import { ButtonsMenu, ButtonGame, LogoGame, GoThemes, TitleJob } from './style.js';
+import { PageContainer } from '../../Components/Global/PageContainer.js'
 import { Link } from 'react-router-dom';
 import Peca from '../../assets/Peca.svg';
-import Roleta from '../../assets/Roleta.svg';
+import RoletaMenu from '../../assets/RoletaMenu.svg';
 import JobTitle from '../../assets/JobTitle.svg';
 import iconeTema from '../../assets/iconeTema.svg'
+import backgroundGiz from '../../assets/backgroundGiz.jpg'
 
 export default function Menu() {
     return (
-        <PageContainer>
+        <PageContainer backgroundImage={backgroundGiz}>
             <LogoGame src={JobTitle} />
             <ButtonsMenu>
                 <Link to={"gamememory"}>
@@ -17,12 +19,13 @@ export default function Menu() {
                 </Link>
                 <Link to={"roulette"}>
                     <ButtonGame>
-                        <LogoGame src={Roleta} />Roleta
+                        <LogoGame src={RoletaMenu} />Roleta
                     </ButtonGame>
                 </Link>
-                <Temas><LogoGame src={iconeTema} />Temas</Temas>
-
             </ButtonsMenu>
+            <Link to={"themes"}>
+                <GoThemes><LogoGame src={iconeTema} />Temas</GoThemes>
+            </Link>
         </PageContainer>
     );
 }

@@ -1,6 +1,14 @@
 import styled from 'styled-components';
+import TemaApertoMao from "../../assets/TemaApertoMao.svg"
+import TemaAgente from "../../assets/TemaAgente.svg"
 
-export const ButtonsMenu = styled.div`
+export const TitleTheme = styled.h1`
+    margin: 0 0 0 0;
+    text-align: center;
+    margin-bottom: 0.5rem;
+`
+
+export const ThemeButtonContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -10,10 +18,10 @@ export const ButtonsMenu = styled.div`
     padding: 0 0 0 0;
 `
 
-export const ButtonGame = styled.button`
+export const ThemeButton = styled.button`
     height: 6rem;
     width: 27rem;
-    margin: 3rem;
+    margin: 1rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -21,24 +29,17 @@ export const ButtonGame = styled.button`
     border: none;
     cursor: pointer;
     font-size: large;
+    background-image: url(${TemaAgente});
+    background-size: cover;
+    background-repeat: no-repeat;
 `
 
-export const GoThemes = styled.a`
+export const GoMenu = styled.a`
     position: absolute;
     bottom: 16px;
-    right: 16px;
+    left: 16px;
     color: #eee;
     display: flex;
     align-items: center;
     margin: 0.5rem;
-`
-
-export const LogoGame = styled.img`
-    display: flex;
-    margin-right: 0.5rem;
-`
-
-export const TitleJob = styled.title`
-    display: flex;
-    justify-content: center;
 `
