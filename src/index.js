@@ -3,11 +3,31 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Menu from './Pages/Menu/Menu';
+import GameMemory from './Pages/Memoria/Memoria';
+import Roulette from './Pages/Roleta/Roleta';
+
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element: <Menu/>
+  },
+  {
+    path:"gamememory",
+    element: <GameMemory/>,
+  },
+  {
+    path:"roulette",
+    element: <Roulette/>,
+  }
+
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

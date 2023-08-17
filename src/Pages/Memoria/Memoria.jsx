@@ -1,7 +1,9 @@
+import { PageContainer } from "../Menu/style";
+
 export default function GameMemory(){
     return(
-        <div>
+        <PageContainer>
             teste de rota.
-        </div>
+        </PageContainer>
     )
 }
