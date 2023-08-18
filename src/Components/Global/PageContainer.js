@@ -8,5 +8,11 @@ export const PageContainer = styled.div`
     width: 100%;
     height: 100vh;
     text-align: center;
-    margin: none;
+    margin: 0;
+    justify-content: center;
+
+    h1{
+        margin: 0;
+        margin-bottom: 0.25rem;
+    }
 `;

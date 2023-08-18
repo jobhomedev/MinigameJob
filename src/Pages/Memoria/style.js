@@ -1,18 +1,18 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-export const GameContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-    background-color: #1a1a1a69;
-    padding: 0 0 0 0;
-`
+const flipAnimation = keyframes`
+    0% {
+        transform: perspective(600px) rotateY(0deg);
+    }
+    100% {
+        transform: perspective(600px) rotateY(180deg);
+    }
+`;
 
 export const Peca = styled.button`
     display: flex;
     align-items: center;
+    animation: ${flipAnimation} 1s ease-in-out;
 `
 
 export const LogoPeca = styled.img`

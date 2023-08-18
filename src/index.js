@@ -8,6 +8,7 @@ import Menu from './Pages/Menu/Menu';
 import GameMemory from './Pages/Memoria/Memoria';
 import Roulette from './Pages/Roleta/Roleta';
 import Themes from './Pages/Temas/Temas';
+import Divination from './Pages/Adivinha/Adivinha';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path:"roulette",
     element: <Roulette/>,
+  },
+  {
+    path:"divination",
+    element: <Divination/>,
   },
   {
     path:"themes",

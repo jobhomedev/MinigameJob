@@ -13,7 +13,7 @@ export const ButtonsMenu = styled.div`
 export const ButtonGame = styled.button`
     height: 6rem;
     width: 27rem;
-    margin: 3rem;
+    margin: 2rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;

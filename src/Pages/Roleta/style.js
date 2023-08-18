@@ -1,20 +1,43 @@
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
+import Roleta from '../../assets/RoletaGame2.svg';
 
-export const RoulleteImage = styled.img`
-    display: flex;
-    align-items: center;
-`
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
-export const RoulleteContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-`
+const RouletteContainer = styled.div`
+  width: 200px;
+  height: 200px;
+  background: url(${Roleta}) no-repeat center center;
+  background-size: cover;
+  animation: ${props => (props.isSpinning ? `${rotate} 5s linear infinite` : 'none')};
+`;
 
-export const RotatingImage = styled.img`
-    width: 200px;
-    height: 200px;
-    transition: transform 0.5s ease;
-    transform: rotate(${props => props.rotation}deg);
-`
+const Button = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const Roulette = () => {
+  const [isSpinning, setIsSpinning] = useState(false);
+
+  const handleSpinClick = () => {
+    setIsSpinning(true);
+  };
+
+  return (
+    <RouletteContainer isSpinning={isSpinning}>
+      <Button onClick={handleSpinClick}>Girar</Button>
+    </RouletteContainer>
+  );
+};
+
+export default Roulette;
