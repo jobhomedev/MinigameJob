@@ -14,5 +14,6 @@ export const PageContainer = styled.div`
     h1{
         margin: 0;
         margin-bottom: 0.25rem;
+        color: #fff;
     }
 `;

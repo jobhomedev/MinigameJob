@@ -32,3 +32,13 @@ export const LifesAndTimer = styled.div`
 export const LogoLifes = styled.img`
     padding: 0 0 0 0;
 `
+
+export const Reload = styled.a`
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    color: #eee;
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+`
