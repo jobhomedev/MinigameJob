@@ -8,6 +8,7 @@ import JobTextoLogo from '../../assets/JobTextoLogo.svg';
 import JobhomeLogo from '../../assets/CardVirado.svg';
 import Joker from '../../assets/Coringa.svg';
 
+// Cartas declaradas
 const iconList = [
     { id: 1, flipped: false, img: LogoEscura, flipAnimation: '', shine: false},
     { id: 2, flipped: false, img: JobhomeLogo, flipAnimation: '', shine: false},
@@ -15,6 +16,7 @@ const iconList = [
     { id: 4, flipped: false, img: JobTextoLogo, flipAnimation: '', shine: false},
   ];
 
+  // Embaralha as cartas
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

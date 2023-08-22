@@ -9,6 +9,26 @@ const flipAnimation = keyframes`
     }
 `;
 
+export const GameOverContainer = styled.div`
+    font-size: 60px;
+    color: #efefef;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+`
+
+export const GameOver = styled.h1`
+    font-family: 'Handjet';
+    text-decoration: none;
+`
+
+export const GameOverOption = styled.a`
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Handjet';
+`
+
 export const Peca = styled.button`
     display: flex;
     align-items: center;

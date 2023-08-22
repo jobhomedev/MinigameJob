@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { LogoGame } from '../Menu/style';
 import { GoMenu } from '../Temas/style';
 import { PageContainer } from '../../Components/Global/PageContainer'
 import { Link } from "react-router-dom";
-import { LifesAndTimer, Reload } from './style';
+import { GameOver, GameOverContainer, GameOverOption, LifesAndTimer, Reload } from './style';
 import ReloadIcon from '../../assets/Reload.svg';
 import Coracao from '../../assets/Coracao.svg';
 import Relogio from '../../assets/Relogio.svg';
@@ -17,6 +17,7 @@ import JobSemTexto from '../../assets/JobSemTexto.svg';
 import LogoEscura from '../../assets/logoEscura.svg';
 import JobTextoLogo from '../../assets/JobTextoLogo.svg';
 
+//Animação de virar a carta
 const flipAnimation = keyframes`
     0% {
         transform: perspective(600px) rotateY(0deg);
@@ -68,15 +69,15 @@ const CardBack = styled.div`
     transform: rotateY(180deg);
 `;
 
+//Declarando as cartas e suas imagens.
 const iconList = [
-  { id: 1, flipped: false, img: LogoEscura, flipAnimation: '', shine: false},
-  { id: 2, flipped: false, img: JobhomeLogo, flipAnimation: '', shine: false},
-  { id: 3, flipped: false, img: JobSemTexto, flipAnimation: '', shine: false},
-  { id: 4, flipped: false, img: JobTextoLogo, flipAnimation: '', shine: false},
+  { id: 1, flipped: false, img: LogoEscura, flipAnimation: '', shine: false },
+  { id: 2, flipped: false, img: JobhomeLogo, flipAnimation: '', shine: false },
+  { id: 3, flipped: false, img: JobSemTexto, flipAnimation: '', shine: false },
+  { id: 4, flipped: false, img: JobTextoLogo, flipAnimation: '', shine: false },
 ];
 
-const pares = [{}];
-
+//Embaralha o vetor.
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -99,8 +100,10 @@ function insertAtRandomPosition(array, item) {
   const randomIndex = Math.floor(Math.random() * (array.length + 1));
   array.splice(randomIndex, 0, item);
 }
+
 const GameMemory = () => {
 
+  const [time, setTime] = useState(30) //30 segundos de jogo, deve ser alterado na resetCards também.
   const [cards, setCards] = useState(sortCards);
   const [score, setScore] = useState(0);
   const [lifes, setLifes] = useState(5);
@@ -108,23 +111,35 @@ const GameMemory = () => {
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
 
+  useEffect(() => {
+    if (time > 0) {
+      const timer = setTimeout(() => {
+        setTime(time - 1);
+      }, 1000); // 1000 milissegundos = 1 segundo
+  
+      // Limpa o timer quando o componente é desmontado
+      return () => clearTimeout(timer);
+    } else if (time === 0){
+      setLifes(0)
+    }
+  }, [time]);
+
   const handleCardClick = (clickedCard) => {
     // Ignorar cliques em cartas já viradas
-    if (lifes === 0){
-      alert('Você Perdeu');
-      resetCards();
-      setFirstCard(null)
-    }
 
     if (clickedCard.flipped) return;
-    
     if (!firstCard) {
       clickedCard.flipped = true;
       setFirstCard(clickedCard);
-
+      if (clickedCard.id === 5) {
+        setTimeout(() => setLifes(0), 1000);
+      }
     } else if (!secondCard) {
       clickedCard.flipped = true;
       setSecondCard(clickedCard);
+      if (clickedCard.id === 5) {
+        setTimeout(() => setLifes(0), 2000);
+      }
 
       if (firstCard.id === clickedCard.id) {
         setScore(score + 1);
@@ -147,36 +162,71 @@ const GameMemory = () => {
     }
   };
 
+  function shuffleAndResetCards() {
+    const shuffledCards = sortCards();
+    setCards(shuffledCards);
+  }  
+
   function resetCards() {
     setFlippedCards([]);
     setLifes(5);
+    setTime(30);
     setScore(0);
     setFirstCard(null);
     setSecondCard(null);
     setCards(prevCards =>
       prevCards.map(card => ({ ...card, flipped: false }))
     );
+    shuffleAndResetCards();
   }
 
   return (
     <PageContainer backgroundImage={backgroundGiz}>
       <h1>Jogo da Memória</h1>
-      <LifesAndTimer><LogoGame src={Relogio} /> 30S</LifesAndTimer><LifesAndTimer><LogoGame src={Coracao} /> {lifes}/5 </LifesAndTimer>
+      <LifesAndTimer><LogoGame src={Relogio} /> {time}</LifesAndTimer><LifesAndTimer><LogoGame src={Coracao} /> {lifes}/5 </LifesAndTimer>
+      {/*Valida se lifes é igual a zero para determinar se irá ou não renderizar o game.*/}
+      {lifes === 0 ? (
+        <GameOverContainer>
+          <GameOver>Game Over </GameOver>
+          <GameOver>Tentar Novamente?</GameOver>
+          <GameOverOption onClick={resetCards}>
+            Sim
+          </GameOverOption>
+          <Link to={"/"}>
+            <GameOverOption>
+              Não
+            </GameOverOption>
+          </Link>
+        </GameOverContainer>
+      ) : (
         <GameContainer>
           {cards.map((card, i) => (
             <div key={i}>
-              <Card $flipped={card.flipped} onClick={() => handleCardClick(card)}>
-                {card.flipped ? <CardBack style={{ backgroundImage: `url(${card.img})` }} /> : <CardFront />}
+              <Card
+                $flipped={card.flipped}
+                onClick={() => handleCardClick(card)}
+              >
+                {card.flipped ? (
+                  <CardBack style={{ backgroundImage: `url(${card.img})` }} />
+                ) : (
+                  <CardFront />
+                )}
               </Card>
             </div>
           ))}
         </GameContainer>
-        <Link to={"/"}>
-          <GoMenu><LogoGame src={Menor} />Menu</GoMenu>
-        </Link>
-        <Reload onClick={resetCards}><LogoGame src={ReloadIcon} />Restart</Reload>
+      )}
+      <Link to={"/"}>
+        <GoMenu>
+          <LogoGame src={Menor} />
+          Menu
+        </GoMenu>
+      </Link>
+      <Reload onClick={resetCards}>
+        <LogoGame src={ReloadIcon} />
+        Restart
+      </Reload>
     </PageContainer>
   );
 };
-
 export default GameMemory;
