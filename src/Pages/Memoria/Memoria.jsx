@@ -107,58 +107,32 @@ const GameMemory = () => {
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
 
-  const handleCardClick = (card) => {
-    if (card.flipped) 
-    return;
-    if (firstCard) {
-      if (firstCard.id === card.id) {
+  const handleCardClick = (clickedCard) => {
+    // Ignorar cliques em cartas já viradas
+    if (clickedCard.flipped) return;
+
+    if (!firstCard) {
+      clickedCard.flipped = true;
+      setFirstCard(clickedCard);
+    } else if (!secondCard) {
+      clickedCard.flipped = true;
+      setSecondCard(clickedCard);
+
+      if (firstCard.id === clickedCard.id) {
         alert("Estão iguais");
         setFirstCard(null);
-        card.flipped = true;
-        firstCard.flipped = true;
+        setSecondCard(null);
       } else {
         alert("Não são iguais");
-        firstCard.flipped = false;
+        // Desvirar as cartas após um tempo (você pode usar um setTimeout aqui)
+        setTimeout(() => {
+          firstCard.flipped = false;
+          clickedCard.flipped = false;
+          setFirstCard(null);
+          setSecondCard(null);
+        }, 1000); // Tempo em milissegundos
       }
-      setFirstCard(null);
     }
-    card.flipped = true;
-    setFirstCard(card);
-
-    /* if (flippedCards.length < 2) {
-      setCards(prevCards => {
-        const updatedCards = prevCards.map(card => {
-          if (card === card1 && !card.flipped) {
-            setFlippedCards(prevFlippedCards => [...prevFlippedCards, card]);
-            return { ...card, flipped: true };
-          }
-          return card;
-        });
-
-        if (flippedCards.length === 1) {
-          const [card1] = flippedCards;
-          const card2 = updatedCards.find(card => card.flipped && card.id !== card1.id);
-
-          if (card2.id === 2 && card1.id === 5) {
-            console.log('par')
-            updatedCards.forEach(card => {
-              if (card.id === card1.id || card.id === card2.id) {
-                card.matched = true;
-              }
-            });
-          }
-        }
-
-        return updatedCards;
-      });
-    } */
-
-    /* if (flippedCards.length === 2) {
-      setTimeout(() => {
-        setCards(prevCards => prevCards.map(card => ({ ...card, flipped: false })));
-        setFlippedCards([]);
-      }, 1000); // Tempo em milissegundos
-    } */
   };
 
 
