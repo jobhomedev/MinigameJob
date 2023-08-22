@@ -4,8 +4,10 @@ import { LogoGame } from '../Menu/style';
 import { GoMenu } from '../Temas/style';
 import { PageContainer } from '../../Components/Global/PageContainer'
 import { Link } from "react-router-dom";
-import { Reload } from './style';
-import ReloadIcon from '../../assets/Reload.svg'
+import { LifesAndTimer, Reload } from './style';
+import ReloadIcon from '../../assets/Reload.svg';
+import Coracao from '../../assets/Coracao.svg';
+import Relogio from '../../assets/Relogio.svg';
 import backgroundGiz from '../../assets/backgroundGiz.jpg';
 import PecaGame from '../../assets/PecaGame.svg';
 import JobhomeLogo from '../../assets/CardVirado.svg';
@@ -23,7 +25,6 @@ const flipAnimation = keyframes`
         transform: perspective(600px) rotateY(180deg);
     }
 `;
-
 
 const GameContainer = styled.div`
     display: grid;
@@ -43,8 +44,7 @@ const Card = styled.div`
     justify-content: center;
     font-size: 18px;
     cursor: pointer;
-    animation: ${({ $flipped }) => ($flipped ? flipAnimation : 'none')};
-    animation-fill-mode: forwards;
+    animation: ${({ flipped }) => (flipped ? 'none' : flipAnimation)} 1s cubic-bezier(0.25, 0.1, 0.25, 1);    animation-fill-mode: forwards;
     perspective: 1000px;
     position: relative;
     transform-style: preserve-3d;
@@ -69,10 +69,10 @@ const CardBack = styled.div`
 `;
 
 const iconList = [
-  { id: 1, flipped: false, img: LogoEscura },
-  { id: 2, flipped: false, img: JobhomeLogo },
-  { id: 3, flipped: false, img: JobSemTexto },
-  { id: 4, flipped: false, img: JobTextoLogo },
+  { id: 1, flipped: false, img: LogoEscura, flipAnimation: '', shine: false},
+  { id: 2, flipped: false, img: JobhomeLogo, flipAnimation: '', shine: false},
+  { id: 3, flipped: false, img: JobSemTexto, flipAnimation: '', shine: false},
+  { id: 4, flipped: false, img: JobTextoLogo, flipAnimation: '', shine: false},
 ];
 
 const pares = [{}];
@@ -102,29 +102,41 @@ function insertAtRandomPosition(array, item) {
 const GameMemory = () => {
 
   const [cards, setCards] = useState(sortCards);
-
+  const [score, setScore] = useState(0);
+  const [lifes, setLifes] = useState(5);
   const [flippedCards, setFlippedCards] = useState([]);
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
 
   const handleCardClick = (clickedCard) => {
     // Ignorar cliques em cartas já viradas
-    if (clickedCard.flipped) return;
+    if (lifes === 0){
+      alert('Você Perdeu');
+      resetCards();
+      setFirstCard(null)
+    }
 
+    if (clickedCard.flipped) return;
+    
     if (!firstCard) {
       clickedCard.flipped = true;
       setFirstCard(clickedCard);
+
     } else if (!secondCard) {
       clickedCard.flipped = true;
       setSecondCard(clickedCard);
 
       if (firstCard.id === clickedCard.id) {
-        alert("Estão iguais");
+        setScore(score + 1);
         setFirstCard(null);
         setSecondCard(null);
+        alert("Estão iguais");
+
       } else {
+
         alert("Não são iguais");
-        // Desvirar as cartas após um tempo (você pode usar um setTimeout aqui)
+        // Desvirar as cartas após um tempo
+        setLifes(lifes - 1);
         setTimeout(() => {
           firstCard.flipped = false;
           clickedCard.flipped = false;
@@ -135,9 +147,12 @@ const GameMemory = () => {
     }
   };
 
-
   function resetCards() {
     setFlippedCards([]);
+    setLifes(5);
+    setScore(0);
+    setFirstCard(null);
+    setSecondCard(null);
     setCards(prevCards =>
       prevCards.map(card => ({ ...card, flipped: false }))
     );
@@ -146,19 +161,20 @@ const GameMemory = () => {
   return (
     <PageContainer backgroundImage={backgroundGiz}>
       <h1>Jogo da Memória</h1>
-      <GameContainer>
-        {cards.map((card, i) => (
-          <div key={i}>
-            <Card $flipped={card.flipped} onClick={() => handleCardClick(card)}>
-              {card.flipped ? <CardBack style={{ backgroundImage: `url(${card.img})` }} /> : <CardFront />}
-            </Card>
-          </div>
-        ))}
-      </GameContainer>
-      <Link to={"/"}>
-        <GoMenu><LogoGame src={Menor} />Menu</GoMenu>
-      </Link>
-      <Reload onClick={resetCards}>Restart</Reload>
+      <LifesAndTimer><LogoGame src={Relogio} /> 30S</LifesAndTimer><LifesAndTimer><LogoGame src={Coracao} /> {lifes}/5 </LifesAndTimer>
+        <GameContainer>
+          {cards.map((card, i) => (
+            <div key={i}>
+              <Card $flipped={card.flipped} onClick={() => handleCardClick(card)}>
+                {card.flipped ? <CardBack style={{ backgroundImage: `url(${card.img})` }} /> : <CardFront />}
+              </Card>
+            </div>
+          ))}
+        </GameContainer>
+        <Link to={"/"}>
+          <GoMenu><LogoGame src={Menor} />Menu</GoMenu>
+        </Link>
+        <Reload onClick={resetCards}><LogoGame src={ReloadIcon} />Restart</Reload>
     </PageContainer>
   );
 };

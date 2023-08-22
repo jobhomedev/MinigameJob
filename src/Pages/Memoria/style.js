@@ -27,6 +27,7 @@ export const LifesAndTimer = styled.div`
     justify-content: flex-end;
     right: 1rem;
     position: relative;
+    color: #efefef;
 `
 
 export const LogoLifes = styled.img`
