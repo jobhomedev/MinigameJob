@@ -55,7 +55,7 @@ export const CardFrontAd = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url(${PecaGame});
+    background-image: ${({ $backgroundImage }) => `url(${$backgroundImage})`};
     background-size: cover;
     transform: rotateY(180deg);
 `;
@@ -68,3 +68,16 @@ export const CardBackAd = styled.div`
     background-size: cover;
     transform: rotateY(180deg);
 `;
+
+export const ErrosAcertosContainer = styled.div`
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 1rem;
+`
+
+export const Acertos = styled.img`
+    display: flex;
+    margin-right: 0.5rem;
+    color: #03a487;
+`
