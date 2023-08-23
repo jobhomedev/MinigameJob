@@ -13,7 +13,7 @@ const flipAnimation = keyframes`
 export const GameContainerAdivinha = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 10rem);
-    grid-template-rows: repeat(2, 10rem);
+    grid-template-rows: repeat(1, 10rem);
     gap: 10px;
     justify-items: center;
     justify-content: center;

@@ -14,6 +14,8 @@ const iconList = [
     { id: 2, flipped: false, img: JobhomeLogo, flipAnimation: '', shine: false},
     { id: 3, flipped: false, img: JobSemTexto, flipAnimation: '', shine: false},
     { id: 4, flipped: false, img: JobTextoLogo, flipAnimation: '', shine: false},
+    { id: 5, flipped: false, img: JobTextoLogo, flipAnimation: '', shine: false},
+    { id: 6, flipped: false, img: JobTextoLogo, flipAnimation: '', shine: false},
   ];
 
   // Embaralha as cartas
@@ -27,11 +29,9 @@ const iconList = [
 
   const sortCards = () => {
     const cards = iconList
-      .map(icon => [{ ...icon }, { ...icon }])
+      .map(icon => [{ ...icon }])
       .flat();
-  
-    insertAtRandomPosition(cards, { id: 5, flipped: false, img: Joker },)
-  
+    
     return shuffleArray(cards);
   
   }
