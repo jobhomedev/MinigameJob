@@ -19,13 +19,22 @@ export const GameContainerAdivinha = styled.div`
     justify-content: center;
 `
 
-export const CardEscolhido = styled.div`
+export const CardEscolhidoContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(1, 10rem);
     grid-template-rows: repeat(1, 10rem);
     justify-content: center;
     justify-items: center;
 `
+
+export const CardEscolhido = styled.img`
+    width: 150px;
+    height: 150px;
+    border: 1px solid #FFED4B; /* Adicionando uma borda amarela */
+    padding: 10px; /* Adicionando um preenchimento de 10px em todas as direções */
+    background-color: yellow; /* Definindo a cor do preenchimento */
+    background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
+`;
 
 export const CardAdivinha = styled.div`
     width: 150px;
@@ -55,7 +64,7 @@ export const CardBackAd = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
+    background-image: ${({ $backgroundImage }) => `url(${$backgroundImage})`};
     background-size: cover;
     transform: rotateY(180deg);
 `;
