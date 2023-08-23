@@ -1,22 +1,16 @@
-import Menu from "./Pages/Menu/Menu";
 import { useState } from "react";
-import backgroundGiz from './assets/backgroundGiz.jpg'
-import TemaApertoMao from './assets/TemaApertoMao.svg'
+import { BrowserRouter } from 'react-router-dom';
+import RoutesApplication from "./Routes";
+import themes from "./themes";
 
+// Função principal do app
 function App() {
-
-  const [backgroundImage, setBackgroundImage] = useState(backgroundGiz);
-
-  const handleBackgroundImage = () => {
-    if (backgroundImage === backgroundGiz) {
-      setBackgroundImage(TemaApertoMao);
-    } else {
-      setBackgroundImage(backgroundGiz);
-    }
-  }
-
-  return (
-    <App/>
+  // state que armazena o tema principal
+  // const [currentTheme, setCurrentTheme] = useState(themes[0]);
+  console.log(themes);
+  return (<BrowserRouter>
+    <RoutesApplication />
+  </BrowserRouter>
   );
 }
 

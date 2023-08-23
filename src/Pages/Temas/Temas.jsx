@@ -12,24 +12,24 @@ export default function Themes() {
     const [backgroundImage, setBackgroundImage] = useState(backgroundGiz);
 
     const handleBackgroundImage = () => {
-        if(backgroundImage === backgroundGiz){
+        if (backgroundImage === backgroundGiz) {
             setBackgroundImage(TemaApertoMao);
         } else {
             setBackgroundImage(backgroundGiz);
         }
     }
-    
+
     return (
         <PageContainer backgroundImage={backgroundImage}>
-            <TitleTheme>Configuração de Tela de Fundo</TitleTheme>
             <ThemeButtonContainer>
+                <TitleTheme>Configuração de Tela de Fundo</TitleTheme>
                 <ThemeButton onClick={handleBackgroundImage}>Tema 1</ThemeButton>
                 <ThemeButton>Tema 2</ThemeButton>
                 <ThemeButton>Tema 3</ThemeButton>
                 <ThemeButton>Tema 4</ThemeButton>
             </ThemeButtonContainer>
             <Link to={"/"}>
-            <GoMenu><LogoGame src={Menor}/>Menu</GoMenu>
+                <GoMenu><LogoGame src={Menor} />Menu</GoMenu>
             </Link>
         </PageContainer>
     )

@@ -10,34 +10,10 @@ import Roulette from './Pages/Roleta/Roleta';
 import Themes from './Pages/Temas/Temas';
 import Divination from './Pages/Adivinha/Adivinha';
 
-const router = createBrowserRouter([
-  {
-    path:"/",
-    element: <Menu/>
-  },
-  {
-    path:"gamememory",
-    element: <GameMemory/>,
-  },
-  {
-    path:"roulette",
-    element: <Roulette/>,
-  },
-  {
-    path:"divination",
-    element: <Divination/>,
-  },
-  {
-    path:"themes",
-    element:<Themes />,
-  }
-
-])
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <App />
   </React.StrictMode>
 );
 
