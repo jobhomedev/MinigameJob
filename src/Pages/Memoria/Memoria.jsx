@@ -5,6 +5,7 @@ import { GoMenu } from '../Temas/style';
 import { PageContainer } from '../../Components/Global/PageContainer'
 import { Link } from "react-router-dom";
 import { GameOver, GameOverContainer, GameOverOption, LifesAndTimer, Reload } from './style';
+import Pontos from '../../assets/Pontos.svg';
 import ReloadIcon from '../../assets/Reload.svg';
 import Coracao from '../../assets/Coracao.svg';
 import Relogio from '../../assets/Relogio.svg';
@@ -116,10 +117,10 @@ const GameMemory = () => {
       const timer = setTimeout(() => {
         setTime(time - 1);
       }, 1000); // 1000 milissegundos = 1 segundo
-  
+
       // Limpa o timer quando o componente é desmontado
       return () => clearTimeout(timer);
-    } else if (time === 0){
+    } else if (time === 0) {
       setLifes(0)
     }
   }, [time]);
@@ -165,7 +166,7 @@ const GameMemory = () => {
   function shuffleAndResetCards() {
     const shuffledCards = sortCards();
     setCards(shuffledCards);
-  }  
+  }
 
   function resetCards() {
     setFlippedCards([]);
@@ -183,7 +184,15 @@ const GameMemory = () => {
   return (
     <PageContainer backgroundImage={backgroundGiz}>
       <h1>Jogo da Memória</h1>
-      <LifesAndTimer><LogoGame src={Relogio} /> {time}</LifesAndTimer><LifesAndTimer><LogoGame src={Coracao} /> {lifes}/5 </LifesAndTimer>
+      <LifesAndTimer>
+        <LogoGame src={Pontos}/> {score}
+      </LifesAndTimer>
+      <LifesAndTimer>
+        <LogoGame src={Relogio} /> {time}
+      </LifesAndTimer>
+      <LifesAndTimer>
+        <LogoGame src={Coracao} /> {lifes}/5
+      </LifesAndTimer>
       {/*Valida se lifes é igual a zero para determinar se irá ou não renderizar o game.*/}
       {lifes === 0 ? (
         <GameOverContainer>
@@ -196,6 +205,16 @@ const GameMemory = () => {
             <GameOverOption>
               Não
             </GameOverOption>
+          </Link>
+        </GameOverContainer>
+      ) : score === 1 ? (
+        // Se o jogador fez 4 pontos, exiba uma mensagem de parabéns
+        <GameOverContainer>
+          <GameOver>Parabéns!</GameOver>
+          <GameOver>Você formou todos os pares!</GameOver>
+          <GameOverOption onClick={resetCards}>Jogar Novamente</GameOverOption>
+          <Link to={"/"}>
+            <GameOverOption>Não</GameOverOption>
           </Link>
         </GameOverContainer>
       ) : (
