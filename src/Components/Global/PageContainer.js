@@ -9,10 +9,4 @@ export const PageContainer = styled.div`
     text-align: center;
     margin: 0;
     justify-content: center;
-
-    h1 {
-        margin: 0;
-        margin-bottom: 0.25rem;
-        color: #fff;
-    }
 `;
