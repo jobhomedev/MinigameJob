@@ -8,9 +8,10 @@ import {
   CardAdivinha,
   CardFrontAd,
   CardBackAd,
-  ErrosAcertosContainer
+  ErrosAcertosContainer,
+  BlinkingCard
 } from "./style";
-import { GameOver, GameOverContainer, GameOverOption } from "../Memoria/style";
+import { GameOver, GameOverContainer, GameOverOption, GameOverOptionContainer } from "../Memoria/style";
 import { useState } from "react";
 import { GoMenu } from '../Temas/style';
 import { Link } from "react-router-dom";
@@ -26,15 +27,16 @@ import FoneAberto from '../../assets/FoneAberto.svg';
 import PecaGame from '../../assets/PecaGame.svg';
 import Pontos from '../../assets/Pontos.svg';
 import Erros from '../../assets/Erros.svg';
+import Confetti from 'react-confetti';
 
 // Cartas declaradas
 const iconList = [
-  { id: 1, flipped: true, img: LogoEscura },
-  { id: 2, flipped: true, img: JobhomeLogo },
-  { id: 3, flipped: true, img: JobSemTexto },
-  { id: 4, flipped: true, img: JobTextoLogo },
-  { id: 5, flipped: true, img: Joker },
-  { id: 6, flipped: true, img: FoneAberto },
+  { id: 1, flipped: false, img: LogoEscura },
+  { id: 2, flipped: false, img: JobhomeLogo },
+  { id: 3, flipped: false, img: JobSemTexto },
+  { id: 4, flipped: false, img: JobTextoLogo },
+  { id: 5, flipped: false, img: Joker },
+  { id: 6, flipped: false, img: FoneAberto },
 ];
 
 // Embaralha as cartas
@@ -61,11 +63,15 @@ export default function Divination() {
   const [randomCard, setRandomCard] = useState(chooseRandomCard(cards));
   const [score, setScore] = useState(0);
   const [fouls, setFouls] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
   const randomCardIndex = Math.floor(Math.random() * cards.length);
+  const [isBlinking, setIsBlinking] = useState(false);
 
   const handleCardClick = (clickedCard) => {
     // Ignorar cliques em cartas já viradas
     //if (!clickedCard.flipped) return;
+
+    const newRandomCard = chooseRandomCard(cards);
 
     const updatedCards = cards.map((card) => {
       if (card.id === clickedCard.id) {
@@ -79,11 +85,14 @@ export default function Divination() {
     setTimeout(() => {
       if (clickedCard.id === randomCard.id) {
         //Valida se a carta selecionada é igual a carta que deve ser adivinhada.
-        alert("Estão iguais")
+        //alert("Estão iguais")
         setScore(score + 1);
+        setIsBlinking(true)
         setTimeout(() => {
           setCards([...cards]);
           shuffleAndResetCards();//Embaralha as cartas após meio segundo.
+          setRandomCard(newRandomCard);
+
         }, 500)
       }
       else {
@@ -113,33 +122,33 @@ export default function Divination() {
 
   return (
     <PageContainer backgroundImage={BackgroundGiz}>
-      {score === 1 ? (
+      {score === 2 ? (
         <GameOverContainer>
           <GameOver>Parabéns</GameOver>
           <GameOver>Deseja Continuar?</GameOver>
-          <GameOverOption onClick={resetCards}>
-            Sim
-          </GameOverOption>
-          <Link to={"/"}>
-            <GameOverOption>
+          <GameOverOptionContainer>
+            <GameOverOption onClick={resetCards}>
+              Sim
+            </GameOverOption>
+            <GameOverOption to={"/"}>
               Não
             </GameOverOption>
-          </Link>
+          </GameOverOptionContainer>
+          {showConfetti && <Confetti />}
         </GameOverContainer>
       ) : fouls === 5 ? (
         <GameOverContainer>
           <GameOver>Game Over </GameOver>
           <GameOver>Tentar Novamente?</GameOver>
-          <GameOverOption onClick={resetCards}>
-            Sim
-          </GameOverOption>
-          <Link to={"/"}>
-            <GameOverOption>
+          <GameOverOptionContainer>
+            <GameOverOption onClick={resetCards}>
+              Sim
+            </GameOverOption>
+            <GameOverOption to={"/"}>
               Não
             </GameOverOption>
-          </Link>
+          </GameOverOptionContainer>
         </GameOverContainer>
-
       ) : (
 
         <PageContainer>
@@ -169,6 +178,7 @@ export default function Divination() {
                 </div>
               )
             })}
+
           </GameContainerAdivinha>
 
           <Link to={"/"}>

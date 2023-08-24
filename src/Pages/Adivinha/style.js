@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import PecaGame from '../../assets/CardVirado.svg';
 
 const flipAnimation = keyframes`
@@ -9,6 +9,7 @@ const flipAnimation = keyframes`
         transform: perspective(600px) rotateY(180deg);
     }
 `;
+
 
 export const GameContainerAdivinha = styled.div`
     display: grid;
@@ -34,6 +35,14 @@ export const CardEscolhido = styled.img`
     padding: 10px; /* Adicionando um preenchimento de 10px em todas as direções */
     background-color: yellow; /* Definindo a cor do preenchimento */
     background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
+`;
+
+const BlinkingCard = styled(CardAdivinha)`
+  ${props =>
+    props.isBlinking &&
+    css`
+      animation: ${blinkAnimation} 1s infinite;
+    `}
 `;
 
 export const CardAdivinha = styled.div`
@@ -71,9 +80,11 @@ export const CardBackAd = styled.div`
 
 export const ErrosAcertosContainer = styled.div`
     display: flex;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
     padding: 1rem;
+    gap: 1rem;
+    color: #fff;
 `
 
 export const Acertos = styled.img`
