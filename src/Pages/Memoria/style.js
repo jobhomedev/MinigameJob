@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 const flipAnimation = keyframes`
@@ -15,18 +16,26 @@ export const GameOverContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    
+
 `
 
-export const GameOver = styled.h1`
+export const GameOver = styled.h2`
     font-family: 'Handjet';
     text-decoration: none;
 `
 
-export const GameOverOption = styled.a`
+export const GameOverOptionContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10rem;
+`
+
+export const GameOverOption = styled(Link)`
     cursor: pointer;
     text-decoration: none;
     font-family: 'Handjet';
+    color: #fff;
 `
 
 export const Peca = styled.button`
@@ -39,6 +48,13 @@ export const LogoPeca = styled.img`
     display: flex;
     margin-right: 0.5rem;
     padding: 0.5rem;
+`
+
+export const LifesAndTimerContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10rem;
 `
 
 export const LifesAndTimer = styled.div`
@@ -62,4 +78,5 @@ export const Reload = styled.a`
     display: flex;
     align-items: center;
     margin: 0.5rem;
+    font-family: 'HKGrotesk-Regular', sans-serif;
 `

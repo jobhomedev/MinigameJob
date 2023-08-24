@@ -18,21 +18,21 @@ export default function Menu() {
 
             <ButtonsMenu>
 
-                <ButtonGame to={"gamememory"}>
+                <ButtonGame to={"gamememoryrules"}>
                     <LogoGame src={PecaMenu} />
                     <Description>
                         Jogo memória
                     </Description>
                 </ButtonGame>
 
-                <ButtonGame to={"roulette"}>
+                <ButtonGame to={"rouletterules"}>
                     <LogoGame src={RoletaMenu} />
                     <Description>
                         Roleta
                     </Description>
                 </ButtonGame>
 
-                <ButtonGame to={"divination"}>
+                <ButtonGame to={"divinationrules"}>
                     <LogoGame src={InterrogationMenu} />
                     <Description>
                         Encontre a Carta

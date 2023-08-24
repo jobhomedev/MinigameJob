@@ -19,6 +19,7 @@ export const PhraseJobhome = styled.div`
     height: 100%;
     color: #fff;
     width: auto;
+    font-family: 'HKGrotesk-Regular', sans-serif;
 `;
 
 export const ButtonsMenu = styled.div`
@@ -53,6 +54,7 @@ export const ButtonGame = styled(Link)`
 export const LogoGame = styled.img`
    height: 100%;
    border-radius: 0.25rem 0rem 0rem 0.25rem;
+   margin-right: 0.5rem;
 `;
 
 export const Description = styled.div`
@@ -64,6 +66,8 @@ export const Description = styled.div`
     height: 100%;
     padding: 1rem;
     color: #4f4f4f;
+    font-family: 'HKGrotesk-Regular', sans-serif;
+
 `;
 
 export const GoThemes = styled.a`

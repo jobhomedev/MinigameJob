@@ -26,6 +26,7 @@ export const GoMenu = styled.a`
     display: flex;
     align-items: center;
     margin: 0.5rem;
+    font-family: 'HKGrotesk-Regular', sans-serif;
 `;
 export const ThemeList = styled.div`
     overflow-y: auto;

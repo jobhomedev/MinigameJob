@@ -4,7 +4,15 @@ import { LogoGame } from '../Menu/style';
 import { GoMenu } from '../Temas/style';
 import { PageContainer } from '../../Components/Global/PageContainer'
 import { Link } from "react-router-dom";
-import { GameOver, GameOverContainer, GameOverOption, LifesAndTimer, Reload } from './style';
+import {
+  GameOver,
+  GameOverContainer,
+  GameOverOption,
+  LifesAndTimerContainer,
+  GameOverOptionContainer,
+  LifesAndTimer,
+  Reload
+} from './style';
 import Pontos from '../../assets/Pontos.svg';
 import ReloadIcon from '../../assets/Reload.svg';
 import Coracao from '../../assets/Coracao.svg';
@@ -146,11 +154,11 @@ const GameMemory = () => {
         setScore(score + 1);
         setFirstCard(null);
         setSecondCard(null);
-        alert("Estão iguais");
+        //  alert("Estão iguais");
 
       } else {
 
-        alert("Não são iguais");
+        // alert("Não são iguais");
         // Desvirar as cartas após um tempo
         setLifes(lifes - 1);
         setTimeout(() => {
@@ -183,68 +191,78 @@ const GameMemory = () => {
 
   return (
     <PageContainer backgroundImage={backgroundGiz}>
-      <h1>Jogo da Memória</h1>
-      <LifesAndTimer>
-        <LogoGame src={Pontos}/> {score}
-      </LifesAndTimer>
-      <LifesAndTimer>
-        <LogoGame src={Relogio} /> {time}
-      </LifesAndTimer>
-      <LifesAndTimer>
-        <LogoGame src={Coracao} /> {lifes}/5
-      </LifesAndTimer>
       {/*Valida se lifes é igual a zero para determinar se irá ou não renderizar o game.*/}
       {lifes === 0 ? (
-        <GameOverContainer>
-          <GameOver>Game Over </GameOver>
-          <GameOver>Tentar Novamente?</GameOver>
-          <GameOverOption onClick={resetCards}>
-            Sim
-          </GameOverOption>
-          <Link to={"/"}>
-            <GameOverOption>
-              Não
-            </GameOverOption>
-          </Link>
-        </GameOverContainer>
+        <PageContainer backgroundImage={backgroundGiz}>
+          <GameOverContainer>
+            <GameOver>Game Over </GameOver>
+            <GameOver>Tentar Novamente?</GameOver>
+            <GameOverOptionContainer>
+              <GameOverOption onClick={resetCards}>
+                Sim
+              </GameOverOption>
+              <GameOverOption to={"/"}>
+                Não
+              </GameOverOption>
+            </GameOverOptionContainer>
+          </GameOverContainer>
+        </PageContainer>
       ) : score === 1 ? (
         // Se o jogador fez 4 pontos, exiba uma mensagem de parabéns
-        <GameOverContainer>
-          <GameOver>Parabéns!</GameOver>
-          <GameOver>Você formou todos os pares!</GameOver>
-          <GameOverOption onClick={resetCards}>Jogar Novamente</GameOverOption>
-          <Link to={"/"}>
-            <GameOverOption>Não</GameOverOption>
-          </Link>
-        </GameOverContainer>
+        <PageContainer backgroundImage={backgroundGiz}>
+          <GameOverContainer>
+            <GameOver>Parabéns!</GameOver>
+            <GameOver>Você formou todos os pares!</GameOver>
+            <GameOverOption onClick={resetCards}>Jogar Novamente</GameOverOption>
+            <GameOverOption to={"/"}>
+              Não
+            </GameOverOption>
+          </GameOverContainer>
+        </PageContainer>
       ) : (
-        <GameContainer>
-          {cards.map((card, i) => (
-            <div key={i}>
-              <Card
-                $flipped={card.flipped}
-                onClick={() => handleCardClick(card)}
-              >
-                {card.flipped ? (
-                  <CardBack style={{ backgroundImage: `url(${card.img})` }} />
-                ) : (
-                  <CardFront />
-                )}
-              </Card>
-            </div>
-          ))}
-        </GameContainer>
+        <PageContainer backgroundImage={backgroundGiz}>
+          <h1>Jogo da Memória</h1>
+
+          <LifesAndTimerContainer>
+            <LifesAndTimer>
+              <LogoGame src={Pontos} /> {score}
+            </LifesAndTimer>
+            <LifesAndTimer>
+              <LogoGame src={Relogio} /> {time}
+            </LifesAndTimer>
+            <LifesAndTimer>
+              <LogoGame src={Coracao} /> {lifes}/5
+            </LifesAndTimer>
+          </LifesAndTimerContainer>
+          <GameContainer>
+
+            {cards.map((card, i) => (
+              <div key={i}>
+                <Card
+                  $flipped={card.flipped}
+                  onClick={() => handleCardClick(card)}
+                >
+                  {card.flipped ? (
+                    <CardBack style={{ backgroundImage: `url(${card.img})` }} />
+                  ) : (
+                    <CardFront />
+                  )}
+                </Card>
+              </div>
+            ))}
+            <Link to={"/"}>
+              <GoMenu>
+                <LogoGame src={Menor} />
+                Menu
+              </GoMenu>
+            </Link>
+            <Reload onClick={resetCards}>
+              <LogoGame src={ReloadIcon} />
+              Restart
+            </Reload>
+          </GameContainer>
+        </PageContainer>
       )}
-      <Link to={"/"}>
-        <GoMenu>
-          <LogoGame src={Menor} />
-          Menu
-        </GoMenu>
-      </Link>
-      <Reload onClick={resetCards}>
-        <LogoGame src={ReloadIcon} />
-        Restart
-      </Reload>
     </PageContainer>
   );
 };

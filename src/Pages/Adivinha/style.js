@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import PecaGame from '../../assets/CardVirado.svg';
 
 const flipAnimation = keyframes`
@@ -9,6 +9,7 @@ const flipAnimation = keyframes`
         transform: perspective(600px) rotateY(180deg);
     }
 `;
+
 
 export const GameContainerAdivinha = styled.div`
     display: grid;
@@ -71,9 +72,11 @@ export const CardBackAd = styled.div`
 
 export const ErrosAcertosContainer = styled.div`
     display: flex;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
     padding: 1rem;
+    gap: 1rem;
+    color: #fff;
 `
 
 export const Acertos = styled.img`
