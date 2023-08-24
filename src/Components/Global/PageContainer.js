@@ -2,16 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 export const PageContainer = styled.div`
-    background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
     background-size: cover;
     background-position: center;
-    width: 100%;
-    height: 100vh;
     text-align: center;
     margin: 0;
     justify-content: center;
 
-    h1{
+    h1 {
         margin: 0;
         margin-bottom: 0.25rem;
         color: #fff;
