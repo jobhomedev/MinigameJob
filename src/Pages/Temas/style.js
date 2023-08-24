@@ -15,7 +15,6 @@ export const ThemeButtonContainer = styled.div`
     align-items: center;
     position: relative;
     height: 100%;
-    background-color: #1a1a1a69;
     padding: 1rem;
 `;
 

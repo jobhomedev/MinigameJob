@@ -1,4 +1,25 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+export const LogoJobhomeContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    padding: 1rem;
+`;
+
+export const LogoJobhome = styled.img`
+    width: min(100%, 20rem);
+`;
+
+export const PhraseJobhome = styled.div`
+    height: 100%;
+    color: #fff;
+    width: auto;
+`;
 
 export const ButtonsMenu = styled.div`
     display: flex;
@@ -6,22 +27,44 @@ export const ButtonsMenu = styled.div`
     flex-direction: column;
     align-items: center;
     position: relative;
-    background-color: #1a1a1a69;
-    padding: 0 0 0 0;
-`
+    gap: 1rem;
+    padding: 1rem;
+    width: min(100%, 27rem);
+    margin: 0 auto;
+    `;
 
-export const ButtonGame = styled.button`
-    height: 6rem;
-    width: 27rem;
-    margin: 2rem;
+export const ButtonGame = styled(Link)`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-radius: 1rem;
+    width: 100%;
+    height: 6rem;
+    border-radius: 0.25rem;
     border: none;
     cursor: pointer;
     font-size: large;
-`
+    background-color: #fff;
+    text-decoration: none;
+    &:hover {
+        background-color: #f3f3f3;
+    }
+`;
+
+export const LogoGame = styled.img`
+   height: 100%;
+   border-radius: 0.25rem 0rem 0rem 0.25rem;
+`;
+
+export const Description = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    color: #4f4f4f;
+`;
 
 export const GoThemes = styled.a`
     position: absolute;
@@ -31,14 +74,4 @@ export const GoThemes = styled.a`
     display: flex;
     align-items: center;
     margin: 0.5rem;
-`
-
-export const LogoGame = styled.img`
-    display: flex;
-    margin-right: 0.5rem;
-`
-
-export const TitleJob = styled.title`
-    display: flex;
-    justify-content: center;
-`
+`;
