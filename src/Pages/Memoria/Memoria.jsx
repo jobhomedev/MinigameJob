@@ -154,11 +154,11 @@ const GameMemory = () => {
         setScore(score + 1);
         setFirstCard(null);
         setSecondCard(null);
-        alert("Estão iguais");
+        //  alert("Estão iguais");
 
       } else {
 
-        alert("Não são iguais");
+        // alert("Não são iguais");
         // Desvirar as cartas após um tempo
         setLifes(lifes - 1);
         setTimeout(() => {
@@ -214,9 +214,9 @@ const GameMemory = () => {
             <GameOver>Parabéns!</GameOver>
             <GameOver>Você formou todos os pares!</GameOver>
             <GameOverOption onClick={resetCards}>Jogar Novamente</GameOverOption>
-            <Link to={"/"}>
-              <GameOverOption>Não</GameOverOption>
-            </Link>
+            <GameOverOption to={"/"}>
+              Não
+            </GameOverOption>
           </GameOverContainer>
         </PageContainer>
       ) : (

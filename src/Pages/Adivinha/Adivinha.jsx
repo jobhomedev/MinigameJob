@@ -31,12 +31,12 @@ import Confetti from 'react-confetti';
 
 // Cartas declaradas
 const iconList = [
-  { id: 1, flipped: false, img: LogoEscura },
-  { id: 2, flipped: false, img: JobhomeLogo },
-  { id: 3, flipped: false, img: JobSemTexto },
-  { id: 4, flipped: false, img: JobTextoLogo },
-  { id: 5, flipped: false, img: Joker },
-  { id: 6, flipped: false, img: FoneAberto },
+  { id: 1, flipped: true, img: LogoEscura },
+  { id: 2, flipped: true, img: JobhomeLogo },
+  { id: 3, flipped: true, img: JobSemTexto },
+  { id: 4, flipped: true, img: JobTextoLogo },
+  { id: 5, flipped: true, img: Joker },
+  { id: 6, flipped: true, img: FoneAberto },
 ];
 
 // Embaralha as cartas
@@ -96,7 +96,7 @@ export default function Divination() {
         }, 500)
       }
       else {
-        alert("Não são iguais");
+        //alert("Não são iguais");
         setFouls(fouls + 1);
         setTimeout(() => {
           setCards([...cards]);
@@ -122,7 +122,7 @@ export default function Divination() {
 
   return (
     <PageContainer backgroundImage={BackgroundGiz}>
-      {score === 2 ? (
+      {score === 1 ? (
         <GameOverContainer>
           <GameOver>Parabéns</GameOver>
           <GameOver>Deseja Continuar?</GameOver>
