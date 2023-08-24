@@ -30,7 +30,7 @@ export const GoMenu = styled.a`
 `;
 export const ThemeList = styled.div`
     overflow-y: auto;
-    width: 100%;
+    width: min(30rem, 100%);
     height: 100%;
 `;
 
