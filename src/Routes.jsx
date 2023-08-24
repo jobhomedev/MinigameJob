@@ -3,7 +3,7 @@ import Menu from './Pages/Menu/Menu.jsx'
 import GameMemory from "./Pages/Memoria/Memoria.jsx";
 import Themes from "./Pages/Temas/Temas.jsx";
 import Divination from "./Pages/Adivinha/Adivinha.jsx";
-import Roulette from "./Pages/Roleta/style.js";
+import Roulette from "./Pages/Roleta/Roleta.jsx";
 
 export default function RoutesApplication() {
     return (
