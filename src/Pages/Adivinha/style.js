@@ -37,14 +37,6 @@ export const CardEscolhido = styled.img`
     background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
 `;
 
-const BlinkingCard = styled(CardAdivinha)`
-  ${props =>
-    props.isBlinking &&
-    css`
-      animation: ${blinkAnimation} 1s infinite;
-    `}
-`;
-
 export const CardAdivinha = styled.div`
     width: 150px;
     height: 150px;
