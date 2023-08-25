@@ -12,13 +12,13 @@ export default function RoutesApplication() {
     return (
         <Routes>
             <Route path="/" element={<Menu />} />
-            <Route path="gamememoryrules" element={<MemoryRules/>} />
-            <Route path="gamememory" element={<GameMemory />} />
-            <Route path="rouletterules" element={<RouletteRules />} />
-            <Route path="roulette" element={<Roulette />} />
-            <Route path="divinationrules" element={<DivinationRules />} />
-            <Route path="divination" element={<Divination />} />
-            <Route path="themes" element={<Themes />} />
+            <Route path="/gamememoryrules" element={<MemoryRules/>} />
+            <Route path="/gamememory" element={<GameMemory />} />
+            <Route path="/rouletterules" element={<RouletteRules />} />
+            <Route path="/roulette" element={<Roulette />} />
+            <Route path="/divinationrules" element={<DivinationRules />} />
+            <Route path="/divination" element={<Divination />} />
+            <Route path="/themes" element={<Themes />} />
         </Routes>
     )
 }
