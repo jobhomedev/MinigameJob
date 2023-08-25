@@ -1,6 +1,6 @@
 import { PageContainer } from "../../Components/Global/PageContainer";
 import { Reload } from "../Memoria/style";
-import { LogoGame } from "../Menu/style";
+import { LogoGame, LogoJobhome, LogoJobhomeContainer } from "../Menu/style";
 import {
   GameContainerAdivinha,
   CardEscolhido,
@@ -27,6 +27,7 @@ import FoneAberto from '../../assets/FoneAberto.svg';
 import PecaGame from '../../assets/PecaGame.svg';
 import Pontos from '../../assets/Pontos.svg';
 import Erros from '../../assets/Erros.svg';
+import JobTitle from '../../assets/JobTitle.svg';
 
 // Cartas declaradas
 const iconList = [
@@ -57,18 +58,19 @@ const sortCards = () => {
 };
 
 export default function Divination() {
-
   const [cards, setCards] = useState(sortCards);
   const [randomCard, setRandomCard] = useState(chooseRandomCard(cards));
   const [score, setScore] = useState(0);
   const [fouls, setFouls] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
-  const randomCardIndex = Math.floor(Math.random() * cards.length);
   const [isBlinking, setIsBlinking] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false); //estado para controlar a logica do jogo
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));//Delay para evitar que vire mais de uma carta por vez
 
-  const handleCardClick = (clickedCard) => {
-    // Ignorar cliques em cartas já viradas
-    //if (!clickedCard.flipped) return;
+  const handleCardClick = async (clickedCard) => {
+    if (isProcessing || !clickedCard.flipped) return; // Se estiver processando ou a carta já estiver virada, não permitir clique
+
+    setIsProcessing(true); // Iniciar processamento
 
     const newRandomCard = chooseRandomCard(cards);
 
@@ -81,26 +83,20 @@ export default function Divination() {
 
     setCards(updatedCards);
 
-    setTimeout(() => {
+    setTimeout(async () => {
       if (clickedCard.id === randomCard.id) {
-        //Valida se a carta selecionada é igual a carta que deve ser adivinhada.
-        //alert("Estão iguais")
         setScore(score + 1);
-        setIsBlinking(true)
-        setTimeout(() => {
-          setCards([...cards]);
-          shuffleAndResetCards();//Embaralha as cartas após meio segundo.
-          setRandomCard(newRandomCard);
-
-        }, 500)
-      }
-      else {
-        //alert("Não são iguais");
+        setIsBlinking(true);
+        await delay(500); // aguardar 
+        setCards(sortCards());
+        setRandomCard(newRandomCard);
+      } else {
         setFouls(fouls + 1);
-        setTimeout(() => {
-          setCards([...cards]);
-        }, 500)
+        await delay(500); // aguardar 
+        setCards(sortCards());
       }
+
+      setIsProcessing(false); // Concluir processamento
     }, 1000);
   };
 
@@ -121,44 +117,75 @@ export default function Divination() {
 
   return (
     <PageContainer backgroundImage={BackgroundGiz}>
-      {score === 1 ? (
+
+      {score === 3 ? (
+
         <GameOverContainer>
+
+          <LogoJobhomeContainer>
+            <LogoJobhome src={JobTitle} />
+          </LogoJobhomeContainer>
+
           <GameOver>Parabéns</GameOver>
           <GameOver>Deseja Continuar?</GameOver>
+
           <GameOverOptionContainer>
+
             <GameOverOption onClick={resetCards}>
               Sim
             </GameOverOption>
             <GameOverOption to={"/"}>
               Não
             </GameOverOption>
+
           </GameOverOptionContainer>
+
         </GameOverContainer>
-      ) : fouls === 5 ? (
-        <GameOverContainer>
-          <GameOver>Game Over </GameOver>
-          <GameOver>Tentar Novamente?</GameOver>
-          <GameOverOptionContainer>
-            <GameOverOption onClick={resetCards}>
-              Sim
-            </GameOverOption>
-            <GameOverOption to={"/"}>
-              Não
-            </GameOverOption>
-          </GameOverOptionContainer>
-        </GameOverContainer>
+
+      ) : fouls === 3 ? (
+        <PageContainer>
+
+          <LogoJobhomeContainer>
+            <LogoJobhome src={JobTitle} />
+          </LogoJobhomeContainer>
+          
+          <GameOverContainer>
+
+            <GameOver>Game Over </GameOver>
+            <GameOver>Tentar Novamente?</GameOver>
+
+            <GameOverOptionContainer>
+              <GameOverOption onClick={resetCards}>
+                Sim
+              </GameOverOption>
+              <GameOverOption to={"/"}>
+                Não
+              </GameOverOption>
+
+            </GameOverOptionContainer>
+
+          </GameOverContainer>
+
+        </PageContainer>
       ) : (
 
         <PageContainer>
+
           <h1>Encontre a carta</h1>
+
           <ErrosAcertosContainer>
+
             <LogoGame src={Pontos} /> {score}
             <LogoGame src={Erros} /> {fouls}
+
           </ErrosAcertosContainer>
 
           <CardEscolhidoContainer>
+
             <CardEscolhido src={randomCard.img} />
+
           </CardEscolhidoContainer>
+
           <GameContainerAdivinha>
             {cards.map((card) => {
               return (
@@ -185,10 +212,12 @@ export default function Divination() {
               Menu
             </GoMenu>
           </Link>
+
           <Reload onClick={resetCards}>
             <LogoGame src={ReloadIcon} />
             Restart
           </Reload>
+
         </PageContainer>
       )}
     </PageContainer>

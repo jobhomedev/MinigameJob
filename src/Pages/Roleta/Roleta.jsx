@@ -10,71 +10,88 @@ import {
   Reload,
 } from './style.js';
 import { PageContainer } from '../../Components/Global/PageContainer.js';
-import Title from '../../Components/Title.jsx';
 import { Link } from 'react-router-dom';
+import Title from '../../Components/Title.jsx';
 import Menor from "../../assets/Menor.svg";
 
 const createPosition = (award, angle) => ({ award, angle });
 
-// 0, 10, 30, 50, 65, 80, 90, 100
-
 const positions = [
-  createPosition(0, 45 * 0),
-  createPosition(10, 45 * 1),
-  createPosition(30, 45 * 2),
-  createPosition(50, 45 * 3),
-  createPosition(65, 45 * 4),
-  createPosition(80, 45 * 5),
-  createPosition(90, 45 * 6),
-  createPosition(100, 45 * 7),
+  createPosition(0, 30 * 0),
+  createPosition(10, 30 * 1),
+  // createPosition(20, 30 * 2),
+  // createPosition(30, 30 * 3),
+  // createPosition(40, 30 * 4),
+  // createPosition(50, 30 * 5),
+  // createPosition(60, 30 * 6),
+  // createPosition(70, 30 * 7),
+  // createPosition(80, 30 * 8),
+  // createPosition(90, 30 * 9),
+  // createPosition(100, 30 * 10),
+  // createPosition(110, 30 * 11),
 ];
-
-console.log(positions);
 
 export default function Roulette() {
   const [spinning, setSpinning] = useState(false);
   const [currentPosition, setCurrentPosition] = useState(positions[0]);
   const [repetitions, setRepetitions] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [angle0Count, setAngle0Count] = useState(0);
+  const [angle0LimitReached, setAngle0LimitReached] = useState(false);
+
+  useEffect(() => {
+    const storedCount = localStorage.getItem('angle0Count');
+    if (storedCount) {
+      const count = Number(storedCount);
+      if (count >= 2) {
+        setAngle0LimitReached(true);
+      }
+      setAngle0Count(count);
+    }
+  }, []);
 
   function handleSpinClick() {
-    if (spinning) return;
+    if (spinning || angle0LimitReached) return;
     setRepetitions(0);
     setDuration(0);
     setSpinning(true);
+    console.log(angle0Count);
 
     const timeout = setTimeout(() => {
-      const currentPosition = getRandomItem(positions);
-      const repetitions = Math.round(Math.random() * 10) + 10;
-      const duration = getDuration(repetitions);
-      setCurrentPosition(currentPosition);
+      const newPosition = getRandomItem(positions);
+      const repetitions = Math.round(Math.random() * 5) + 5;
+      const newDuration = getDuration(repetitions);
+      setCurrentPosition(newPosition);
       setRepetitions(repetitions);
-      setDuration(duration);
-      setTimeout(() => setSpinning(false), duration * 1000);
+      setDuration(newDuration);
+
+      if (newPosition.angle === 0) {
+        const updatedCount = angle0Count + 1;
+        setAngle0Count(updatedCount);
+        localStorage.setItem('angle0Count', updatedCount.toString());
+
+        if (updatedCount >= 2) {
+          setAngle0LimitReached(true);
+        }
+      }
+
+      setTimeout(() => setSpinning(false), newDuration * 1000);
     }, 1);
     return () => clearTimeout(timeout);
   }
 
   return (
     <PageContainer>
-
       <Title>Roleta da Sorte</Title>
-
       <Container>
-
         <ArrowRoleta />
-
         <RouletteContainer
           $angle={rotateNTimes(currentPosition.angle, repetitions)}
           $duration={duration}
-          $repetitions={repetitions} />
-
-        <Button onClick={handleSpinClick}
-          disabled={spinning}
-          $spinning={spinning}>Girar</Button>
-
+          $repetitions={repetitions}
+        />
+        <Button onClick={handleSpinClick} disabled={spinning || angle0LimitReached} $spinning={spinning}></Button>
       </Container>
-
       <Footer>
         <Link to={"/"}>
           <GoMenu>
@@ -82,9 +99,9 @@ export default function Roulette() {
             Menu
           </GoMenu>
         </Link>
-      </Footer >
-    </PageContainer >
-  )
+      </Footer>
+    </PageContainer>
+  );
 }
 
 function rotateNTimes(angle, repetitions) {
@@ -94,10 +111,10 @@ function rotateNTimes(angle, repetitions) {
 }
 
 function getRandomItem(array) {
-  const randomIndex = Math.floor(Math.random() * (array.length));
+  const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
 }
 
 function getDuration(repetitions) {
-  return repetitions * 0.15;
+  return repetitions * 1;
 }

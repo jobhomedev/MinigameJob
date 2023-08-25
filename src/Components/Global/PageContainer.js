@@ -3,32 +3,26 @@ import styled from 'styled-components';
 
 export const PageContainer = styled.div`
     width: 100%;
-    height: 100%;
+    height: 100vh; /* Usando viewport height para ocupar toda a altura da tela */
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centralizar horizontalmente */
     text-align: center;
     margin: 0;
+    padding: 1rem; /* Adicionando um espaçamento interno */
+    box-sizing: border-box; /* Garantir que o padding não afete as dimensões totais */
     justify-content: center;
 
     h1 {
         margin: 0;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.5rem; /* Aumentando o espaçamento inferior */
         color: #fff;
         font-weight: lighter;
-        font-family: 'HKGrotesk-Ligth';
+        font-family: "Hanken Grotesk";
+        font-size: 1.5rem; /* Ajustando o tamanho da fonte */
     }
 
-    p, div, button{
-        font-family: 'HKGrotesk-Regular';
-    }
-/* Adicionando as fontes de arquivos. */
-    @font-face {
-        font-family: 'HKGrotesk-Regular';
-        src: url('../../assets/fonts/WEB/HKGrotesk-Regular.woff') format('woff');
-        src: url('../../assets/fonts/WEB/HKGrotesk-Regular.woff2') format('woff2');
-        
-        font-family: 'HKGrotesk-Ligth';
-        src: url('../../assets/fonts/WEB/HKGrotesk-Light.woff') format('woff');
-        src: url('../../assets/fonts/WEB/HKGrotesk-Light.woff2') format('woff2');
+    p, div, button {
+        font-family: 'Hanken Grotesk';
     }
 `;

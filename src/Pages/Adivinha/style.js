@@ -22,7 +22,7 @@ export const GameContainerAdivinha = styled.div`
 
 export const CardEscolhidoContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(1, 10rem);
+    grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(1, 10rem);
     justify-content: center;
     justify-items: center;
@@ -75,12 +75,12 @@ export const ErrosAcertosContainer = styled.div`
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    gap: 1rem;
+    gap: 0.5rem;
     color: #fff;
 `
 
 export const Acertos = styled.img`
-    display: flex;
-    margin-right: 0.5rem;
+    display: inline-block; 
+    margin-bottom: 0.5rem;
     color: #03a487;
 `

@@ -29,7 +29,7 @@ export const GameOverContainer = styled.div`
 `
 
 export const GameOver = styled.h2`
-    font-family: 'Handjet';
+    font-family: 'Hanken Grotesk';
     text-decoration: none;
 `
 
@@ -43,7 +43,7 @@ export const GameOverOptionContainer = styled.div`
 export const GameOverOption = styled(Link)`
     cursor: pointer;
     text-decoration: none;
-    font-family: 'Handjet';
+    font-family: 'Hanken Grotesk';
     color: #fff;
 `
 
@@ -87,5 +87,5 @@ export const Reload = styled.a`
     display: flex;
     align-items: center;
     margin: 0.5rem;
-    font-family: 'HKGrotesk-Regular', sans-serif;
+    font-family: 'Hanken Grotesk';
 `

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import Roleta from '../../assets/RoletaGame2.svg';
+import Roleta from '../../assets/RoletaGame3.png';
 import { ReactComponent as ArrowRoletaIcon } from '../../assets/arrowRoleta.svg';
 
 export const Container = styled.div`

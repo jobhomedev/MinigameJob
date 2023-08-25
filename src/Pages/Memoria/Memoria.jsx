@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { LogoGame } from '../Menu/style';
+import { LogoGame, LogoJobhome, LogoJobhomeContainer } from "../Menu/style";
 import { GoMenu } from '../Temas/style';
 import { PageContainer } from '../../Components/Global/PageContainer'
 import { Link } from "react-router-dom";
@@ -25,6 +25,7 @@ import Joker from '../../assets/Coringa.svg';
 import JobSemTexto from '../../assets/JobSemTexto.svg';
 import LogoEscura from '../../assets/logoEscura.svg';
 import JobTextoLogo from '../../assets/JobTextoLogo.svg';
+import JobTitle from '../../assets/JobTitle.svg';
 
 //Animação de virar a carta
 const flipAnimation = keyframes`
@@ -117,7 +118,7 @@ const GameMemory = () => {
   const [time, setTime] = useState(30) //30 segundos de jogo, deve ser alterado na resetCards também.
   const [cards, setCards] = useState(sortCards);
   const [score, setScore] = useState(0);
-  const [lifes, setLifes] = useState(5);
+  const [lifes, setLifes] = useState(3);
   const [flippedCards, setFlippedCards] = useState([]);
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
@@ -139,7 +140,7 @@ const GameMemory = () => {
   const handleCardClick = (clickedCard) => {
     // Ignorar cliques em cartas já viradas
     if (clickedCard.flipped) return;
-  
+
     if (!firstCard) {
       clickedCard.flipped = true;
       setFirstCard(clickedCard);
@@ -152,7 +153,7 @@ const GameMemory = () => {
       if (clickedCard.id === 5) {
         setTimeout(() => setLifes(0), 2000);
       }
-  
+
       if (firstCard.id === clickedCard.id) {
         setTimeout(() => {
           setScore(score + 1);
@@ -163,7 +164,7 @@ const GameMemory = () => {
       } else {
         setTimeout(() => {
           setLifes(lifes - 1);
-  
+
           // Desvirar as cartas após um tempo
           const updatedCards = cards.map((card) => {
             if (card === firstCard || card === clickedCard) {
@@ -171,7 +172,7 @@ const GameMemory = () => {
             }
             return card;
           });
-  
+
           setCards(updatedCards);
           setFirstCard(null);
           setSecondCard(null);
@@ -179,7 +180,6 @@ const GameMemory = () => {
       }
     }
   };
-  
 
   function shuffleAndResetCards() {
     const shuffledCards = sortCards();
@@ -188,7 +188,7 @@ const GameMemory = () => {
 
   function resetCards() {
     setFlippedCards([]);
-    setLifes(5);
+    setLifes(3);
     setTime(30);
     setScore(0);
     setFirstCard(null);
@@ -205,8 +205,14 @@ const GameMemory = () => {
       {lifes === 0 ? (
         <PageContainer backgroundImage={backgroundGiz}>
           <GameOverContainer>
+
+            <LogoJobhomeContainer>
+              <LogoJobhome src={JobTitle} />
+            </LogoJobhomeContainer>
+
             <GameOver>Game Over </GameOver>
             <GameOver>Tentar Novamente?</GameOver>
+
             <GameOverOptionContainer>
               <GameOverOption onClick={resetCards}>
                 Sim
@@ -214,26 +220,38 @@ const GameMemory = () => {
               <GameOverOption to={"/"}>
                 Não
               </GameOverOption>
+
             </GameOverOptionContainer>
+
           </GameOverContainer>
+
         </PageContainer>
-      ) : score === 2 ? (
-        // Se o jogador fez 4 pontos, exiba uma mensagem de parabéns
+      ) : score === 3 ? (
+        // Se o jogador fez 3 pontos, exiba uma mensagem de parabéns
         <PageContainer backgroundImage={backgroundGiz}>
+          
+          <LogoJobhomeContainer>
+            <LogoJobhome src={JobTitle} />
+          </LogoJobhomeContainer>
+          
           <GameOverContainer>
+
             <GameOver>Parabéns!</GameOver>
             <GameOver>Você formou todos os pares!</GameOver>
             <GameOverOption onClick={resetCards}>Jogar Novamente</GameOverOption>
             <GameOverOption to={"/"}>
               Não
             </GameOverOption>
+
           </GameOverContainer>
+
         </PageContainer>
       ) : (
         <PageContainer backgroundImage={backgroundGiz}>
           <h1>Jogo da Memória</h1>
 
           <LifesAndTimerContainer>
+
             <LifesAndTimer>
               <LogoGame src={Pontos} /> {score}
             </LifesAndTimer>
@@ -241,9 +259,11 @@ const GameMemory = () => {
               <LogoGame src={Relogio} /> {time}
             </LifesAndTimer>
             <LifesAndTimer>
-              <LogoGame src={Coracao} /> {lifes}/5
+              <LogoGame src={Coracao} /> {lifes}/3
             </LifesAndTimer>
+
           </LifesAndTimerContainer>
+
           <GameContainer>
 
             {cards.map((card, i) => (
@@ -271,7 +291,9 @@ const GameMemory = () => {
               <LogoGame src={ReloadIcon} />
               Restart
             </Reload>
+
           </GameContainer>
+
         </PageContainer>
       )}
     </PageContainer>
