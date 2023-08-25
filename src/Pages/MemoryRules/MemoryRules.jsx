@@ -1,16 +1,23 @@
 import { PageContainer } from "../../Components/Global/PageContainer";
 import { ButtonRule, ButtonRuleContainer, Coringa, MemoryRulesContainer, Content } from './style.js'
-import { LogoGame } from "../Menu/style.js";
+import { LogoGame, LogoJobhome, LogoJobhomeContainer } from "../Menu/style.js";
 import Play from '../../assets/Play.svg';
+import JobTitle from '../../assets/JobTitle.svg';
 
 export default function MemoryRules() {
     return (
         <PageContainer>
+            <LogoJobhomeContainer>
+                <LogoJobhome src={JobTitle} />
+            </LogoJobhomeContainer>
             <MemoryRulesContainer>
-                <Content>Este é o jogo da memória, encontre o par de cada carta, porém tome cuidado com o coringa, é a carta que você não quer achar.</Content>
-                <Content>Jogo da Memória</Content>
+                <Content>Este é o jogo da memória, encontre o par de cada carta.</Content>
+                <Content>Porém tome cuidado com esta carta.</Content>
                 <Coringa></Coringa>
+                <Content>Caso a encontre, irá perder o Game.</Content>
+                <br></br>
                 <Content>Vamos começar?</Content>
+                
                 <ButtonRuleContainer>
                     <ButtonRule to={"../gamememory"}>
                         <LogoGame src={Play} />PLAY
@@ -19,6 +26,7 @@ export default function MemoryRules() {
                         NÃO
                     </ButtonRule>
                 </ButtonRuleContainer>
+            
             </MemoryRulesContainer>
         </PageContainer>
     )

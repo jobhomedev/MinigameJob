@@ -1,14 +1,18 @@
 import { PageContainer } from "../../Components/Global/PageContainer";
 import { ButtonRule, ButtonRuleContainer, Coringa, RouletteRulesContainer, Content } from './style.js'
-import { LogoGame } from "../Menu/style.js";
+import { LogoGame, LogoJobhome, LogoJobhomeContainer } from "../Menu/style";
 import Play from '../../assets/Play.svg';
+import JobTitle from '../../assets/JobTitle.svg';
 
 export default function RouletteRules() {
     return (
         <PageContainer>
+            <LogoJobhomeContainer>
+                <LogoJobhome src={JobTitle} />
+            </LogoJobhomeContainer>
             <RouletteRulesContainer>
                 <Content>
-                    Este é o game da roleta, gire e ganhe prêmios.
+                    Esta é a Roleta da JobHome, gire e ganhe um prêmio incrível.
                 </Content>
                 <ButtonRuleContainer>
                     <ButtonRule to={"../roulette"}>
