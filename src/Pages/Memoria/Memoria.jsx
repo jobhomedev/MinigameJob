@@ -54,7 +54,9 @@ const Card = styled.div`
     justify-content: center;
     font-size: 18px;
     cursor: pointer;
-    animation: ${({ flipped }) => (flipped ? 'none' : flipAnimation)} 1s cubic-bezier(0.25, 0.1, 0.25, 1);    animation-fill-mode: forwards;
+    border: 3px solid ${({ $matched }) => ($matched ? "green" : "black")};
+    animation: ${({ flipped }) => (flipped ? 'none' : flipAnimation)} 1s cubic-bezier(0.25, 0.1, 0.25, 1);    
+    animation-fill-mode: forwards;
     perspective: 1000px;
     position: relative;
     transform-style: preserve-3d;
@@ -119,6 +121,7 @@ const GameMemory = () => {
   const [flippedCards, setFlippedCards] = useState([]);
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
+  const [matchedPairs, setMatchedPairs] = useState([]);
 
   useEffect(() => {
     if (time > 0) {
@@ -135,8 +138,8 @@ const GameMemory = () => {
 
   const handleCardClick = (clickedCard) => {
     // Ignorar cliques em cartas já viradas
-
     if (clickedCard.flipped) return;
+  
     if (!firstCard) {
       clickedCard.flipped = true;
       setFirstCard(clickedCard);
@@ -149,27 +152,34 @@ const GameMemory = () => {
       if (clickedCard.id === 5) {
         setTimeout(() => setLifes(0), 2000);
       }
-
+  
       if (firstCard.id === clickedCard.id) {
-        setScore(score + 1);
-        setFirstCard(null);
-        setSecondCard(null);
-        //  alert("Estão iguais");
-
-      } else {
-
-        // alert("Não são iguais");
-        // Desvirar as cartas após um tempo
-        setLifes(lifes - 1);
         setTimeout(() => {
-          firstCard.flipped = false;
-          clickedCard.flipped = false;
+          setScore(score + 1);
+          setMatchedPairs([...matchedPairs, firstCard.id]);
+          setFirstCard(null);
+          setSecondCard(null);
+        }, 500);
+      } else {
+        setTimeout(() => {
+          setLifes(lifes - 1);
+  
+          // Desvirar as cartas após um tempo
+          const updatedCards = cards.map((card) => {
+            if (card === firstCard || card === clickedCard) {
+              card.flipped = false;
+            }
+            return card;
+          });
+  
+          setCards(updatedCards);
           setFirstCard(null);
           setSecondCard(null);
         }, 1000); // Tempo em milissegundos
       }
     }
   };
+  
 
   function shuffleAndResetCards() {
     const shuffledCards = sortCards();
@@ -207,7 +217,7 @@ const GameMemory = () => {
             </GameOverOptionContainer>
           </GameOverContainer>
         </PageContainer>
-      ) : score === 1 ? (
+      ) : score === 2 ? (
         // Se o jogador fez 4 pontos, exiba uma mensagem de parabéns
         <PageContainer backgroundImage={backgroundGiz}>
           <GameOverContainer>
@@ -241,6 +251,7 @@ const GameMemory = () => {
                 <Card
                   $flipped={card.flipped}
                   onClick={() => handleCardClick(card)}
+                  matched={matchedPairs.includes(card.id)}
                 >
                   {card.flipped ? (
                     <CardBack style={{ backgroundImage: `url(${card.img})` }} />

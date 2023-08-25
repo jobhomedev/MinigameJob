@@ -27,7 +27,6 @@ import FoneAberto from '../../assets/FoneAberto.svg';
 import PecaGame from '../../assets/PecaGame.svg';
 import Pontos from '../../assets/Pontos.svg';
 import Erros from '../../assets/Erros.svg';
-import Confetti from 'react-confetti';
 
 // Cartas declaradas
 const iconList = [
@@ -134,7 +133,6 @@ export default function Divination() {
               Não
             </GameOverOption>
           </GameOverOptionContainer>
-          {showConfetti && <Confetti />}
         </GameOverContainer>
       ) : fouls === 5 ? (
         <GameOverContainer>

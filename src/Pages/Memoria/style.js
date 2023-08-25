@@ -10,6 +10,15 @@ const flipAnimation = keyframes`
     }
 `;
 
+const flashAnimation = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+`;
+
 export const GameOverContainer = styled.div`
     font-size: 60px;
     color: #efefef;
