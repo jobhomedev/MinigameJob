@@ -55,7 +55,7 @@ const Card = styled.div`
     justify-content: center;
     font-size: 18px;
     cursor: pointer;
-    border: 3px solid ${({ $matched }) => ($matched ? "green" : "black")};
+    border: 3px solid ${({ $matched }) => ($matched ? "#2cff00" : "black")};
     animation: ${({ flipped }) => (flipped ? 'none' : flipAnimation)} 1s cubic-bezier(0.25, 0.1, 0.25, 1);    
     animation-fill-mode: forwards;
     perspective: 1000px;
@@ -83,10 +83,10 @@ const CardBack = styled.div`
 
 //Declarando as cartas e suas imagens.
 const iconList = [
-  { id: 1, flipped: false, img: LogoEscura, flipAnimation: '', shine: false },
-  { id: 2, flipped: false, img: JobhomeLogo, flipAnimation: '', shine: false },
-  { id: 3, flipped: false, img: JobSemTexto, flipAnimation: '', shine: false },
-  { id: 4, flipped: false, img: JobTextoLogo, flipAnimation: '', shine: false },
+  { id: 1, flipped: false, img: LogoEscura, flipAnimation: '' },
+  { id: 2, flipped: false, img: JobhomeLogo, flipAnimation: '' },
+  { id: 3, flipped: false, img: JobSemTexto, flipAnimation: '' },
+  { id: 4, flipped: false, img: JobTextoLogo, flipAnimation: '' },
 ];
 
 //Embaralha o vetor.
@@ -188,6 +188,7 @@ const GameMemory = () => {
 
   function resetCards() {
     setFlippedCards([]);
+    setMatchedPairs([]);
     setLifes(3);
     setTime(30);
     setScore(0);
@@ -271,7 +272,7 @@ const GameMemory = () => {
                 <Card
                   $flipped={card.flipped}
                   onClick={() => handleCardClick(card)}
-                  matched={matchedPairs.includes(card.id)}
+                  $matched={matchedPairs.includes(card.id)}
                 >
                   {card.flipped ? (
                     <CardBack style={{ backgroundImage: `url(${card.img})` }} />
