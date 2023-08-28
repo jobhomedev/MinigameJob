@@ -114,7 +114,7 @@ function insertAtRandomPosition(array, item) {
 
 const GameMemory = () => {
 
-  const [time, setTime] = useState(3600) //30 segundos de jogo, deve ser alterado na resetCards também.
+  const [time, setTime] = useState(30) //30 segundos de jogo, deve ser alterado na resetCards também.
   const [cards, setCards] = useState(sortCards);
   const [score, setScore] = useState(0);
   const [lifes, setLifes] = useState(3);
@@ -124,7 +124,7 @@ const GameMemory = () => {
   const [matchedPairs, setMatchedPairs] = useState([]);
 
   useEffect(() => {
-    if (time > 0) {
+    if (time > 0 && score != 3) {
       const timer = setTimeout(() => {
         setTime(time - 1);
       }, 1000); // 1000 milissegundos = 1 segundo
