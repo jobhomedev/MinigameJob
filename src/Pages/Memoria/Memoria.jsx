@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { LogoGame, LogoJobhome, LogoJobhomeContainer } from "../Menu/style";
 import { GoMenu } from '../Temas/style';
-import { PageContainer } from '../../Components/Global/PageContainer'
+import { Footer, PageContainer } from '../../Components/Global/PageContainer'
 import { Link } from "react-router-dom";
 import {
   GameOver,
@@ -39,17 +39,14 @@ const flipAnimation = keyframes`
 
 const GameContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 10rem);
-    grid-template-rows: repeat(3, 10rem);
-    gap: 10px;
-    justify-items: center;
-    justify-content: center;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    gap: 1rem;
+    padding: 1rem;
+    width: min(30rem, 100%);
 `
 
 const Card = styled.div`
-    width: 150px;
-    height: 150px;
-    margin: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,6 +59,7 @@ const Card = styled.div`
     perspective: 1000px;
     position: relative;
     transform-style: preserve-3d;
+    aspect-ratio: 1/1;
 `;
 
 const CardFront = styled.div`
@@ -116,9 +114,9 @@ function insertAtRandomPosition(array, item) {
 
 const GameMemory = () => {
 
-  const [time, setTime] = useState(5) //30 segundos de jogo, deve ser alterado na resetCards também.
+  const [time, setTime] = useState(3600) //30 segundos de jogo, deve ser alterado na resetCards também.
   const [cards, setCards] = useState(sortCards);
-  const [score, setScore] = useState(3);
+  const [score, setScore] = useState(0);
   const [lifes, setLifes] = useState(3);
   const [flippedCards, setFlippedCards] = useState([]);
   const [firstCard, setFirstCard] = useState(null);
@@ -206,7 +204,7 @@ const GameMemory = () => {
     <PageContainer backgroundImage={backgroundGiz}>
       {/*Valida se lifes é igual a zero para determinar se irá ou não renderizar o game.*/}
       {lifes === 0 ? (
-        <PageContainer backgroundImage={backgroundGiz}>
+        <>
           <GameOverContainer>
 
             <LogoJobhomeContainer>
@@ -228,10 +226,10 @@ const GameMemory = () => {
 
           </GameOverContainer>
 
-        </PageContainer>
+        </>
       ) : score === 3 ? (
         // Se o jogador fez 3 pontos, exiba uma mensagem de parabéns
-        <PageContainer backgroundImage={backgroundGiz}>
+        <>
 
           <LogoJobhomeContainer>
             <LogoJobhome src={JobTitle} />
@@ -248,9 +246,9 @@ const GameMemory = () => {
 
           </GameOverContainer>
 
-        </PageContainer>
+        </>
       ) : (
-        <PageContainer backgroundImage={backgroundGiz}>
+        <>
           <h1>Jogo da Memória</h1>
 
           <LifesAndTimerContainer>
@@ -270,34 +268,35 @@ const GameMemory = () => {
           <GameContainer>
 
             {cards.map((card, i) => (
-              <div key={i}>
-                <Card
-                  $flipped={card.flipped}
-                  onClick={() => handleCardClick(card)}
-                  $matched={matchedPairs.includes(card.id)}
-                >
-                  {card.flipped ? (
-                    <CardBack style={{ backgroundImage: `url(${card.img})` }} />
-                  ) : (
-                    <CardFront />
-                  )}
-                </Card>
-              </div>
+              /* <div> */
+              <Card
+                $flipped={card.flipped}
+                onClick={() => handleCardClick(card)}
+                $matched={matchedPairs.includes(card.id)}
+                key={i}>
+                {card.flipped ? (
+                  <CardBack style={{ backgroundImage: `url(${card.img})` }} />
+                ) : (
+                  <CardFront />
+                )}
+              </Card>
+              /* </div> */
             ))}
-            <Link to={"/"}>
-              <GoMenu>
-                <LogoGame src={Menor} />
-                Menu
-              </GoMenu>
-            </Link>
+
+          </GameContainer>
+
+          <Footer>
+            <GoMenu to={"/"}>
+              <LogoGame src={Menor} />
+              Menu
+            </GoMenu>
+
             <Reload onClick={resetCards}>
               <LogoGame src={ReloadIcon} />
               Restart
             </Reload>
-
-          </GameContainer>
-
-        </PageContainer>
+          </Footer>
+        </>
       )}
     </PageContainer>
   );

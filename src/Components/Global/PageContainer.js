@@ -26,3 +26,10 @@ export const PageContainer = styled.div`
         font-family: 'Hanken Grotesk';
     }
 `;
+
+export const Footer = styled.div`
+    display: flex;
+    width: 100%;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+`;

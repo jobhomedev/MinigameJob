@@ -61,9 +61,10 @@ export const LogoPeca = styled.img`
 
 export const LifesAndTimerContainer = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: row;
-    gap: 10rem;
+    width: min(30rem, 100%);
+
 `
 
 export const LifesAndTimer = styled.div`
@@ -80,9 +81,7 @@ export const LogoLifes = styled.img`
 `
 
 export const Reload = styled.a`
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
+    
     color: #eee;
     display: flex;
     align-items: center;

@@ -8,7 +8,7 @@ import {
     ThemeButtonDescription
 } from "./style";
 import { LogoGame } from "../Menu/style";
-import { PageContainer } from "../../Components/Global/PageContainer";
+import { PageContainer, Footer } from "../../Components/Global/PageContainer";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import Menor from "../../assets/Menor.svg";
@@ -34,9 +34,9 @@ export default function Themes() {
                     ))}
                 </ThemeList>
             </ThemeButtonContainer>
-            <Link to={"/"}>
-                <GoMenu><LogoGame src={Menor} />Menu</GoMenu>
-            </Link>
+            <Footer>
+                <GoMenu to={"/"}><LogoGame src={Menor} />Menu</GoMenu>
+            </Footer>
         </PageContainer>
     )
 }

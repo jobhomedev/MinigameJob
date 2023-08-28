@@ -10,14 +10,15 @@ const flipAnimation = keyframes`
     }
 `;
 
-
 export const GameContainerAdivinha = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 10rem);
-    grid-template-rows: repeat(1, 10rem);
-    gap: 10px;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(1, auto);
+    gap: 1rem;
+    padding: 1rem;
     justify-items: center;
     justify-content: center;
+    width: min(30rem, 100%);
 `
 
 export const CardEscolhidoContainer = styled.div`
@@ -26,30 +27,37 @@ export const CardEscolhidoContainer = styled.div`
     grid-template-rows: repeat(1, 10rem);
     justify-content: center;
     justify-items: center;
+    width: 10rem;
+
+    @media (max-width: 768px) {
+        width: 6rem; /* Reduz a largura em dispositivos móveis */
+    }
 `
 
 export const CardEscolhido = styled.img`
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: auto;
     border: 1px solid #FFED4B; /* Adicionando uma borda amarela */
     padding: 10px; /* Adicionando um preenchimento de 10px em todas as direções */
-    background-color: yellow; /* Definindo a cor do preenchimento */
+    background-color: yellow; //Definindo a cor do preenchimento
     background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
 `;
 
 export const CardAdivinha = styled.div`
-    width: 150px;
-    height: 150px;
-    margin: 1rem;
+    width: 8rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
     cursor: pointer;
     animation: ${({ flipped }) => (flipped ? 'none' : flipAnimation)} 1s cubic-bezier(0.25, 0.1, 0.25, 1);animation-fill-mode: forwards;
-    perspective: 1000px;
-    position: relative;
+    /* perspective: 1000px; */
+    /* position: relative; */
     transform-style: preserve-3d;
+    aspect-ratio: 1/1;
+
+    @media (max-width: 768px) {
+        width: 4rem; /* Reduz a largura em dispositivos móveis */
+    }
 `;
 
 export const CardFrontAd = styled.div`

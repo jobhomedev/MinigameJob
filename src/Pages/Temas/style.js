@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import TemaApertoMao from "../../assets/TemaApertoMao.svg"
 import TemaAgente from "../../assets/TemaAgente.svg"
+import { Link } from 'react-router-dom';
 
 export const TitleTheme = styled.h1`
     margin: 0 0 0 0;
@@ -18,8 +19,7 @@ export const ThemeButtonContainer = styled.div`
     padding: 1rem;
 `;
 
-export const GoMenu = styled.a`
-    position: absolute;
+export const GoMenu = styled(Link)`
     bottom: 16px;
     left: 16px;
     color: #eee;

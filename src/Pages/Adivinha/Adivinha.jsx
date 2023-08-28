@@ -1,4 +1,4 @@
-import { PageContainer } from "../../Components/Global/PageContainer";
+import { Footer, PageContainer } from "../../Components/Global/PageContainer";
 import { Reload } from "../Memoria/style";
 import { LogoGame, LogoJobhome, LogoJobhomeContainer } from "../Menu/style";
 import {
@@ -148,7 +148,7 @@ export default function Divination() {
           <LogoJobhomeContainer>
             <LogoJobhome src={JobTitle} />
           </LogoJobhomeContainer>
-          
+
           <GameOverContainer>
 
             <GameOver>Game Over </GameOver>
@@ -189,35 +189,31 @@ export default function Divination() {
           <GameContainerAdivinha>
             {cards.map((card) => {
               return (
-                <div key={card.id}>
-                  <CardAdivinha
-                    $flipped={card.flipped}
-                    onClick={() => handleCardClick(card)}
-                  >
-                    {card.flipped ? (
-                      <CardFrontAd $backgroundImage={PecaGame} />
-                    ) : (
-                      <CardBackAd $backgroundImage={card.img} />
-                    )}
-                  </CardAdivinha>
-                </div>
+                <CardAdivinha key={card.id}
+                  $flipped={card.flipped}
+                  onClick={() => handleCardClick(card)}>
+                  {card.flipped ? (
+                    <CardFrontAd $backgroundImage={PecaGame} />
+                  ) : (
+                    <CardBackAd $backgroundImage={card.img} />
+                  )}
+                </CardAdivinha>
               )
             })}
 
           </GameContainerAdivinha>
 
-          <Link to={"/"}>
-            <GoMenu>
+          <Footer >
+            <GoMenu to={"/"}>
               <LogoGame src={Menor} />
               Menu
             </GoMenu>
-          </Link>
 
-          <Reload onClick={resetCards}>
-            <LogoGame src={ReloadIcon} />
-            Restart
-          </Reload>
-
+            <Reload onClick={resetCards}>
+              <LogoGame src={ReloadIcon} />
+              Restart
+            </Reload>
+          </Footer>
         </PageContainer>
       )}
     </PageContainer>
