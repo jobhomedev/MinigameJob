@@ -55,7 +55,8 @@ const Card = styled.div`
     justify-content: center;
     font-size: 18px;
     cursor: pointer;
-    border: 3px solid ${({ $matched }) => ($matched ? "#2cff00" : "black")};
+    border: 3px solid ${({ $matched }) => ($matched ? "#2cff00" : "#00000034")};
+    border-radius: 0.5rem;
     animation: ${({ flipped }) => (flipped ? 'none' : flipAnimation)} 1s cubic-bezier(0.25, 0.1, 0.25, 1);    
     animation-fill-mode: forwards;
     perspective: 1000px;
@@ -115,9 +116,9 @@ function insertAtRandomPosition(array, item) {
 
 const GameMemory = () => {
 
-  const [time, setTime] = useState(30) //30 segundos de jogo, deve ser alterado na resetCards também.
+  const [time, setTime] = useState(5) //30 segundos de jogo, deve ser alterado na resetCards também.
   const [cards, setCards] = useState(sortCards);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(3);
   const [lifes, setLifes] = useState(3);
   const [flippedCards, setFlippedCards] = useState([]);
   const [firstCard, setFirstCard] = useState(null);
@@ -133,7 +134,7 @@ const GameMemory = () => {
       // Limpa o timer quando o componente é desmontado
       return () => clearTimeout(timer);
     } else if (time === 0) {
-      setLifes(0)
+      setLifes(0);
     }
   }, [time]);
 
@@ -161,6 +162,7 @@ const GameMemory = () => {
           setFirstCard(null);
           setSecondCard(null);
         }, 500);
+
       } else {
         setTimeout(() => {
           setLifes(lifes - 1);
@@ -230,11 +232,11 @@ const GameMemory = () => {
       ) : score === 3 ? (
         // Se o jogador fez 3 pontos, exiba uma mensagem de parabéns
         <PageContainer backgroundImage={backgroundGiz}>
-          
+
           <LogoJobhomeContainer>
             <LogoJobhome src={JobTitle} />
           </LogoJobhomeContainer>
-          
+
           <GameOverContainer>
 
             <GameOver>Parabéns!</GameOver>

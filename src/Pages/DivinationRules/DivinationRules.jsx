@@ -14,7 +14,7 @@ export default function DivinationRules() {
             
             <DivinationRulesContainer>
                 <Content>
-                    Este é o jogo da adivinhação, encontre o par da carta mostrada no jogo.
+                    Este é o jogo da adivinhação, encontre o par da carta no topo.
                 </Content>
                 <Content>
                     Vamos começar?
