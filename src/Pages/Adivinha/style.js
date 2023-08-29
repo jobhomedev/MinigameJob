@@ -29,9 +29,6 @@ export const CardEscolhidoContainer = styled.div`
     justify-items: center;
     width: 10rem;
 
-    @media (max-width: 768px) {
-        width: 6rem; /* Reduz a largura em dispositivos móveis */
-    }
 `
 
 export const CardEscolhido = styled.img`
@@ -55,9 +52,6 @@ export const CardAdivinha = styled.div`
     transform-style: preserve-3d;
     aspect-ratio: 1/1;
 
-    @media (max-width: 768px) {
-        width: 4rem; /* Reduz a largura em dispositivos móveis */
-    }
 `;
 
 export const CardFrontAd = styled.div`

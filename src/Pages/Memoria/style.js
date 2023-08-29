@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import PecaGame from '../../assets/PecaGame.svg'
 
 const flipAnimation = keyframes`
     0% {
@@ -10,13 +11,47 @@ const flipAnimation = keyframes`
     }
 `;
 
-const flashAnimation = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.5;
-  }
+export const GameContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    gap: 1rem;
+    padding: 1rem;
+    width: min(30rem, 100%);
+`
+
+export const Card = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    border: 3px solid ${({ $matched }) => ($matched ? "#2cff00" : "#00000034")};
+    border-radius: 0.5rem;
+    animation: ${({ flipped }) => (flipped ? 'none' : flipAnimation)} 1s cubic-bezier(0.25, 0.1, 0.25, 1);    
+    animation-fill-mode: forwards;
+    perspective: 1000px;
+    position: relative;
+    transform-style: preserve-3d;
+    aspect-ratio: 1/1;
+`;
+
+export const CardFront = styled.div`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(${PecaGame});
+    background-size: cover;
+    transform: rotateY(180deg);
+`;
+
+export const CardBack = styled.div`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
+    background-size: cover;
+    transform: rotateY(180deg);
 `;
 
 export const GameOverContainer = styled.div`

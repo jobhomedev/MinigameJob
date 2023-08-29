@@ -11,14 +11,17 @@ import {
   LifesAndTimerContainer,
   GameOverOptionContainer,
   LifesAndTimer,
-  Reload
+  Reload,
+  CardFront,
+  CardBack,
+  Card,
+  GameContainer
 } from './style';
 import Pontos from '../../assets/Pontos.svg';
 import ReloadIcon from '../../assets/Reload.svg';
 import Coracao from '../../assets/Coracao.svg';
 import Relogio from '../../assets/Relogio.svg';
 import backgroundGiz from '../../assets/backgroundGiz.jpg';
-import PecaGame from '../../assets/PecaGame.svg';
 import JobhomeLogo from '../../assets/CardVirado.svg';
 import Menor from "../../assets/Menor.svg";
 import Joker from '../../assets/Coringa.svg';
@@ -26,59 +29,6 @@ import JobSemTexto from '../../assets/JobSemTexto.svg';
 import LogoEscura from '../../assets/logoEscura.svg';
 import JobTextoLogo from '../../assets/JobTextoLogo.svg';
 import JobTitle from '../../assets/JobTitle.svg';
-
-//Animação de virar a carta
-const flipAnimation = keyframes`
-    0% {
-        transform: perspective(600px) rotateY(0deg);
-    }
-    100% {
-        transform: perspective(600px) rotateY(180deg);
-    }
-`;
-
-const GameContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: repeat(3, auto);
-    gap: 1rem;
-    padding: 1rem;
-    width: min(30rem, 100%);
-`
-
-const Card = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    cursor: pointer;
-    border: 3px solid ${({ $matched }) => ($matched ? "#2cff00" : "#00000034")};
-    border-radius: 0.5rem;
-    animation: ${({ flipped }) => (flipped ? 'none' : flipAnimation)} 1s cubic-bezier(0.25, 0.1, 0.25, 1);    
-    animation-fill-mode: forwards;
-    perspective: 1000px;
-    position: relative;
-    transform-style: preserve-3d;
-    aspect-ratio: 1/1;
-`;
-
-const CardFront = styled.div`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url(${PecaGame});
-    background-size: cover;
-    transform: rotateY(180deg);
-`;
-
-const CardBack = styled.div`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
-    background-size: cover;
-    transform: rotateY(180deg);
-`;
 
 //Declarando as cartas e suas imagens.
 const iconList = [

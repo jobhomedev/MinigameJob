@@ -19,17 +19,19 @@ const createPosition = (award, angle) => ({ award, angle });
 
 const positions = [
   createPosition(0, 30 * 0),
-  createPosition(10, 30 * 1),
-  createPosition(20, 30 * 2),
-  createPosition(30, 30 * 3),
-  createPosition(40, 30 * 4),
-  createPosition(50, 30 * 5),
-  createPosition(60, 30 * 6),
-  createPosition(70, 30 * 7),
-  createPosition(80, 30 * 8),
-  createPosition(90, 30 * 9),
-  createPosition(100, 30 * 10),
-  createPosition(110, 30 * 11),
+  ...Array(10).fill([
+    createPosition(10, 30 * 1),
+    createPosition(20, 30 * 2),
+    createPosition(30, 30 * 3),
+    createPosition(40, 30 * 4),
+    createPosition(50, 30 * 5),
+    createPosition(60, 30 * 6),
+    createPosition(70, 30 * 7),
+    createPosition(80, 30 * 8),
+    createPosition(90, 30 * 9),
+    createPosition(100, 30 * 10),
+    createPosition(110, 30 * 11),
+  ]).flat()
 ];
 
 export default function Roulette() {
@@ -40,45 +42,60 @@ export default function Roulette() {
   const [angleZeroCount, setAngleZeroCount] = useState(0);
 
   useEffect(() => {
-    const storedAngleZeroCount = localStorage.getItem(localStorageKey);
-    if (storedAngleZeroCount === 'true') {
-      setAngleZeroCount(2);
+    let days = localStorage.getItem('days');
+    if (!days) {
+      localStorage.setItem('days', JSON.stringify({}));
+      days = localStorage.getItem('days');
     }
+
+    days = JSON.parse(days);
+
+    const currentDate = new Date().toISOString().split('T')[0].replaceAll('-', '');
+
+    if (!days[currentDate]) days[currentDate] = 0;
+
+    localStorage.setItem('days', JSON.stringify(days));
+
+    setAngleZeroCount(days[currentDate]);
+
   }, []);
 
   function handleSpinClick() {
     if (spinning) return;
-  
+
     setRepetitions(0);
     setDuration(0);
     setSpinning(true);
-  
+
     const timeout = setTimeout(() => {
       const includeAngleZero = angleZeroCount < 2;
       const availablePositions = includeAngleZero ? positions : positions.filter(pos => pos.award !== 0);
-  
+
       const newPosition = getRandomItem(availablePositions);
-  
+
       const repetitions = Math.round(Math.random() * 5) + 5;
       const newDuration = getDuration(repetitions);
-  
+
       if (includeAngleZero && newPosition.award === 0) {
         setAngleZeroCount(angleZeroCount + 1);
-        
-        if (angleZeroCount + 1 === 2) {
-          localStorage.setItem(localStorageKey, 'true');
-        }
+
+        const days = JSON.parse(localStorage.getItem('days'));
+        const currentDate = new Date().toISOString().split('T')[0].replaceAll('-', '');
+
+        days[currentDate]++;
+        localStorage.setItem('days', JSON.stringify(days));
+
       }
-  
+
       setCurrentPosition(newPosition);
       setRepetitions(repetitions);
       setDuration(newDuration);
-  
+
       setTimeout(() => setSpinning(false), newDuration * 1000);
     }, 1);
     return () => clearTimeout(timeout);
   }
-  
+
   return (
     <PageContainer>
       <Title>Roleta da Sorte</Title>
