@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import Roleta from '../../assets/RoletaGame3.png';
 import { ReactComponent as ArrowRoletaIcon } from '../../assets/arrowRoleta.svg';
+import Roleta from '../../assets/RoletaGame3.png';
+import ButtonRoleta from '../../assets/JobTextoLogo.svg';
+
+export const Congratulations = styled.h2`
+  color: #eee;
+  font-size: 50px;
+`
 
 export const Container = styled.div`
   display: flex;
@@ -12,6 +18,8 @@ export const Container = styled.div`
   height: min(95vw, 30rem);
   margin: 0 auto;
   overflow: hidden;
+  color: #eee;
+  font-size: x-large;
 `;
 
 export const RouletteContainer = styled.div`
@@ -39,6 +47,9 @@ export const Button = styled.button`
               0px 16px 24px rgba(0, 0, 0, 0.1);
   border-radius: 100%;
   cursor: ${({ $spinning }) => $spinning ? 'normal' : 'pointer'};
+  background-image: url(${ButtonRoleta});
+  background-size: cover;
+  background-position: center;
 `;
 
 export const ArrowRoleta = styled(ArrowRoletaIcon)`

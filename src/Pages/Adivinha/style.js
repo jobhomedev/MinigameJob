@@ -12,7 +12,7 @@ const flipAnimation = keyframes`
 
 export const GameContainerAdivinha = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 20vmin);
     grid-template-rows: repeat(1, auto);
     gap: 1rem;
     padding: 1rem;
@@ -23,7 +23,7 @@ export const GameContainerAdivinha = styled.div`
 
 export const CardEscolhidoContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 24vmin);
     grid-template-rows: repeat(1, 10rem);
     justify-content: center;
     justify-items: center;
@@ -41,7 +41,7 @@ export const CardEscolhido = styled.img`
 `;
 
 export const CardAdivinha = styled.div`
-    width: 8rem;
+    width: 20vmin;
     display: flex;
     align-items: center;
     justify-content: center;

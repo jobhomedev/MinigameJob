@@ -8,13 +8,14 @@ import {
   GoMenu,
   LogoGame,
   Reload,
+  Congratulations,
 } from './style.js';
 import { PageContainer } from '../../Components/Global/PageContainer.js';
 import { Link } from 'react-router-dom';
 import Title from '../../Components/Title.jsx';
 import Menor from "../../assets/Menor.svg";
+import Confetti from 'react-confetti';
 
-const localStorageKey = 'angleZeroCount';
 const createPosition = (award, angle) => ({ award, angle });
 
 const positions = [
@@ -40,6 +41,7 @@ export default function Roulette() {
   const [repetitions, setRepetitions] = useState(0);
   const [duration, setDuration] = useState(0);
   const [angleZeroCount, setAngleZeroCount] = useState(0);
+  const [showCongratulations, setShowCongratulations] = useState(false);
 
   useEffect(() => {
     let days = localStorage.getItem('days');
@@ -75,6 +77,7 @@ export default function Roulette() {
 
       const repetitions = Math.round(Math.random() * 5) + 5;
       const newDuration = getDuration(repetitions);
+      console.log(currentPosition);
 
       if (includeAngleZero && newPosition.award === 0) {
         setAngleZeroCount(angleZeroCount + 1);
@@ -92,30 +95,51 @@ export default function Roulette() {
       setDuration(newDuration);
 
       setTimeout(() => setSpinning(false), newDuration * 1000);
+      setTimeout(() => setShowCongratulations(true), 9000);
     }, 1);
     return () => clearTimeout(timeout);
   }
 
   return (
     <PageContainer>
-      <Title>Roleta da Sorte</Title>
-      <Container>
-        <ArrowRoleta />
-        <RouletteContainer
-          $angle={rotateNTimes(currentPosition.angle, repetitions)}
-          $duration={duration}
-          $repetitions={repetitions}
-        />
-        <Button onClick={handleSpinClick} disabled={spinning} $spinning={spinning}></Button>
-      </Container>
-      <Footer>
-        <Link to={"/"}>
-          <GoMenu>
-            <LogoGame src={Menor} />
-            Menu
-          </GoMenu>
-        </Link>
-      </Footer>
+      {showCongratulations ? ( // Expressão ternária para renderizar condicionalmente a tela de parabéns
+        <>
+        <Confetti></Confetti>
+          <Congratulations>
+            Parabéns, você ganhou um prêmio muito especial.
+          </Congratulations>
+          <Congratulations>
+            Um de nossos colaboradores irá lhe entregar o prêmio.
+          </Congratulations>
+          <Link to={"/"}>
+            <GoMenu>
+              <LogoGame src={Menor} />
+              Menu
+            </GoMenu>
+          </Link>
+        </>
+      ) : (
+        <PageContainer>
+          <Title>Roleta da Sorte</Title>
+          <Container>
+            <ArrowRoleta />
+            <RouletteContainer
+              $angle={rotateNTimes(currentPosition.angle, repetitions)}
+              $duration={duration}
+              $repetitions={repetitions}
+            />
+            <Button onClick={handleSpinClick} disabled={spinning} $spinning={spinning}></Button>
+          </Container>
+          <Footer>
+            <Link to={"/"}>
+              <GoMenu>
+                <LogoGame src={Menor} />
+                Menu
+              </GoMenu>
+            </Link>
+          </Footer>
+        </PageContainer>
+      )}
     </PageContainer>
   );
 }
