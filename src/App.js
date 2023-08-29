@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { BrowserRouter } from 'react-router-dom';
+import { Container } from "./style.js";
 import RoutesApplication from "./Routes";
 import themes from "./themes";
 import themeContext from "./context/themeContext";
-import { Container } from "./style.js";
+import './index.css';
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <themeContext.Provider value={{ currentTheme, setCurrentTheme }}>
-      <Container $image={currentTheme.image}>
+      <Container className="hanken" $image={currentTheme.image}>
 
         <BrowserRouter>
           <RoutesApplication />
