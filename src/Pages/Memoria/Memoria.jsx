@@ -88,13 +88,15 @@ const GameMemory = () => {
   }, [time]);
 
   const handleCardClick = async (clickedCard) => {
+
     if (isProcessingPair || clickedCard.flipped) {
       return; // Se o jogo estiver processando um par ou a carta já estiver virada, saia da função
     }
-    setIsProcessingPair(true);
 
     // Ignorar cliques em cartas já viradas
     if (clickedCard.flipped) return;
+    
+    setIsProcessingPair(true);
 
     if (!firstCard) {
       clickedCard.flipped = true;
@@ -139,6 +141,7 @@ const GameMemory = () => {
             }
             return card;
           });
+          setIsProcessingPair(false);
           setCards(updatedCards);
           setFirstCard(null);
           setSecondCard(null);
