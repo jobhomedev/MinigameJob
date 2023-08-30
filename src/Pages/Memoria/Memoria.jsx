@@ -72,6 +72,7 @@ const GameMemory = () => {
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
   const [matchedPairs, setMatchedPairs] = useState([]);
+  const [isProcessingPair, setIsProcessingPair] = useState(false);// Estado para controlar se o jogo está processando um par de cartas
 
   useEffect(() => {
     if (time > 0 && score != 3) {
@@ -87,20 +88,33 @@ const GameMemory = () => {
   }, [time]);
 
   const handleCardClick = (clickedCard) => {
+    if (isProcessingPair || clickedCard.flipped) {
+      return; // Se o jogo estiver processando um par ou a carta já estiver virada, saia da função
+    }
     // Ignorar cliques em cartas já viradas
     if (clickedCard.flipped) return;
 
     if (!firstCard) {
       clickedCard.flipped = true;
       setFirstCard(clickedCard);
+
       if (clickedCard.id === 5) {
-        setTimeout(() => setLifes(0), 1000);
+      setTimeout(() => setLifes(0), 1000);
       }
     } else if (!secondCard) {
       clickedCard.flipped = true;
       setSecondCard(clickedCard);
-      if (clickedCard.id === 5) {
-        setTimeout(() => setLifes(0), 1000);
+
+      if (clickedCard.id === 5 || firstCard.id === 5) {
+        setIsProcessingPair(true);
+        setTimeout(() => {
+          setLifes(0);
+          setIsProcessingPair(false);
+        }, 1500);
+      }
+
+      if (clickedCard.id === 5 || firstCard.id === 5) {
+        setTimeout(() => setLifes(0), 1500);
       }
 
       if (firstCard.id === clickedCard.id) {
@@ -122,7 +136,6 @@ const GameMemory = () => {
             }
             return card;
           });
-
           setCards(updatedCards);
           setFirstCard(null);
           setSecondCard(null);
