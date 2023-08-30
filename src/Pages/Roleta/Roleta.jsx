@@ -42,6 +42,7 @@ export default function Roulette() {
   const [duration, setDuration] = useState(0);
   const [angleZeroCount, setAngleZeroCount] = useState(0);
   const [showCongratulations, setShowCongratulations] = useState(false);
+  const [showCongratulationsPlus, setShowCongratulationsPlus] = useState(false);
 
   useEffect(() => {
     let days = localStorage.getItem('days');
@@ -77,7 +78,6 @@ export default function Roulette() {
 
       const repetitions = Math.round(Math.random() * 5) + 5;
       const newDuration = getDuration(repetitions);
-      console.log(currentPosition);
 
       if (includeAngleZero && newPosition.award === 0) {
         setAngleZeroCount(angleZeroCount + 1);
@@ -88,6 +88,11 @@ export default function Roulette() {
         days[currentDate]++;
         localStorage.setItem('days', JSON.stringify(days));
 
+        setTimeout(() => {
+          setShowCongratulationsPlus(true); // Defina o estado após a roleta parar
+          setShowCongratulations(false);
+        }, newDuration * 1000 + 200); // Espera 200 milissegundos extras após a roleta parar
+
       }
 
       setCurrentPosition(newPosition);
@@ -95,18 +100,36 @@ export default function Roulette() {
       setDuration(newDuration);
 
       setTimeout(() => setSpinning(false), newDuration * 1000);
-      setTimeout(() => setShowCongratulations(true), 9000);
+      setTimeout(() => {
+        setShowCongratulations(true)
+      }, newDuration * 1000 + 200);
     }, 1);
     return () => clearTimeout(timeout);
   }
 
   return (
     <PageContainer>
-      {showCongratulations ? ( // Expressão ternária para renderizar condicionalmente a tela de parabéns
+      { showCongratulationsPlus ? (
         <>
         <Confetti></Confetti>
           <Congratulations>
-            Parabéns, você ganhou um prêmio muito especial.
+            Parabéns, você ganhou o prêmio plus.
+          </Congratulations>
+          <Congratulations>
+            Um de nossos colaboradores irá lhe entregar o prêmio.
+          </Congratulations>
+          <Link to={"/"}>
+            <GoMenu>
+              <LogoGame src={Menor} />
+              Menu
+            </GoMenu>
+          </Link>
+        </>
+      ) : showCongratulations ? ( // Expressão ternária para renderizar condicionalmente a tela de parabéns
+        <>
+        <Confetti></Confetti>
+          <Congratulations>
+            Parabéns, você tirou a sorte grande.
           </Congratulations>
           <Congratulations>
             Um de nossos colaboradores irá lhe entregar o prêmio.

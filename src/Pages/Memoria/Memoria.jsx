@@ -100,7 +100,7 @@ const GameMemory = () => {
       clickedCard.flipped = true;
       setSecondCard(clickedCard);
       if (clickedCard.id === 5) {
-        setTimeout(() => setLifes(0), 2000);
+        setTimeout(() => setLifes(0), 1000);
       }
 
       if (firstCard.id === clickedCard.id) {
