@@ -32,9 +32,9 @@ import JobTitle from '../../assets/JobTitle.svg';
 
 //Declarando as cartas e suas imagens.
 const iconList = [
-  { id: 1, flipped: false, img: LogoEscura, flipAnimation: '' },
-  { id: 2, flipped: false, img: JobhomeLogo, flipAnimation: '' },
-  { id: 3, flipped: false, img: JobSemTexto, flipAnimation: '' },
+  { id: 1, flipped: true, img: LogoEscura, flipAnimation: '' },
+  { id: 2, flipped: true, img: JobhomeLogo, flipAnimation: '' },
+  { id: 3, flipped: true, img: JobSemTexto, flipAnimation: '' },
   { id: 4, flipped: false, img: JobTextoLogo, flipAnimation: '' },
 ];
 
@@ -87,10 +87,12 @@ const GameMemory = () => {
     }
   }, [time]);
 
-  const handleCardClick = (clickedCard) => {
+  const handleCardClick = async (clickedCard) => {
     if (isProcessingPair || clickedCard.flipped) {
       return; // Se o jogo estiver processando um par ou a carta já estiver virada, saia da função
     }
+    setIsProcessingPair(true);
+
     // Ignorar cliques em cartas já viradas
     if (clickedCard.flipped) return;
 
@@ -99,22 +101,24 @@ const GameMemory = () => {
       setFirstCard(clickedCard);
 
       if (clickedCard.id === 5) {
-      setTimeout(() => setLifes(0), 1000);
+        setTimeout(() => {
+          setLifes(0);
+          setIsProcessingPair(false); // Desative o processamento
+        }, 1000);
+      } else {
+        setIsProcessingPair(false); // Desative o processamento
       }
     } else if (!secondCard) {
       clickedCard.flipped = true;
       setSecondCard(clickedCard);
 
       if (clickedCard.id === 5 || firstCard.id === 5) {
-        setIsProcessingPair(true);
         setTimeout(() => {
           setLifes(0);
-          setIsProcessingPair(false);
+          setIsProcessingPair(false); // Desative o processamento
         }, 1500);
-      }
-
-      if (clickedCard.id === 5 || firstCard.id === 5) {
-        setTimeout(() => setLifes(0), 1500);
+      } else {
+        setIsProcessingPair(false); // Desative o processamento
       }
 
       if (firstCard.id === clickedCard.id) {
@@ -124,7 +128,6 @@ const GameMemory = () => {
           setFirstCard(null);
           setSecondCard(null);
         }, 500);
-
       } else {
         setTimeout(() => {
           setLifes(lifes - 1);
