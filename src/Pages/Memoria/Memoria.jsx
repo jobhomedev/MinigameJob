@@ -32,9 +32,9 @@ import JobTitle from '../../assets/JobTitle.svg';
 
 //Declarando as cartas e suas imagens.
 const iconList = [
-  { id: 1, flipped: true, img: LogoEscura, flipAnimation: '' },
-  { id: 2, flipped: true, img: JobhomeLogo, flipAnimation: '' },
-  { id: 3, flipped: true, img: JobSemTexto, flipAnimation: '' },
+  { id: 1, flipped: false, img: LogoEscura, flipAnimation: '' },
+  { id: 2, flipped: false, img: JobhomeLogo, flipAnimation: '' },
+  { id: 3, flipped: false, img: JobSemTexto, flipAnimation: '' },
   { id: 4, flipped: false, img: JobTextoLogo, flipAnimation: '' },
 ];
 
