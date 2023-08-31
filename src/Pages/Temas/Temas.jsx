@@ -9,8 +9,7 @@ import {
 } from "./style";
 import { LogoGame } from "../Menu/style";
 import { PageContainer, Footer } from "../../Components/Global/PageContainer";
-import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Menor from "../../assets/Menor.svg";
 import themes from "../../themes";
 import themeContext from "../../context/themeContext";

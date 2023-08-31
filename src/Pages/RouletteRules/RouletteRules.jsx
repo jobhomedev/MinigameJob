@@ -1,5 +1,5 @@
 import { PageContainer } from "../../Components/Global/PageContainer";
-import { ButtonRule, ButtonRuleContainer, Coringa, RouletteRulesContainer, Content } from './style.js'
+import { ButtonRule, ButtonRuleContainer, RouletteRulesContainer, Content } from './style.js'
 import { LogoGame, LogoJobhome, LogoJobhomeContainer } from "../Menu/style";
 import Play from '../../assets/Play.svg';
 import JobTitle from '../../assets/JobTitle.svg';

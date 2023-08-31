@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
 import { LogoGame, LogoJobhome, LogoJobhomeContainer } from "../Menu/style";
 import { GoMenu } from '../Temas/style';
 import { Footer, PageContainer } from '../../Components/Global/PageContainer'
-import { Link } from "react-router-dom";
 import {
   GameOver,
   GameOverContainer,
@@ -68,14 +66,13 @@ const GameMemory = () => {
   const [cards, setCards] = useState(sortCards);
   const [score, setScore] = useState(0);
   const [lifes, setLifes] = useState(3);
-  const [flippedCards, setFlippedCards] = useState([]);
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
   const [matchedPairs, setMatchedPairs] = useState([]);
   const [isProcessingPair, setIsProcessingPair] = useState(false);// Estado para controlar se o jogo está processando um par de cartas
 
   useEffect(() => {
-    if (time > 0 && score != 3) {
+    if (time > 0 && score !== 3) {
       const timer = setTimeout(() => {
         setTime(time - 1);
       }, 1000); // 1000 milissegundos = 1 segundo
@@ -156,7 +153,6 @@ const GameMemory = () => {
   }
 
   function resetCards() {
-    setFlippedCards([]);
     setMatchedPairs([]);
     setLifes(3);
     setTime(30);

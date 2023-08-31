@@ -7,7 +7,6 @@ import {
   Footer,
   GoMenu,
   LogoGame,
-  Reload,
   Congratulations,
 } from './style.js';
 import { PageContainer } from '../../Components/Global/PageContainer.js';

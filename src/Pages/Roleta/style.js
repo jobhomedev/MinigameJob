@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import styled, { keyframes, css } from 'styled-components';
 import { ReactComponent as ArrowRoletaIcon } from '../../assets/arrowRoleta.svg';
+import styled from 'styled-components';
 import Roleta from '../../assets/RoletaGame3.png';
 import ButtonRoleta from '../../assets/JobTextoLogo.svg';
 

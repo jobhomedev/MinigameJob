@@ -3,12 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Menu from './Pages/Menu/Menu';
-import GameMemory from './Pages/Memoria/Memoria';
-import Roulette from './Pages/Roleta/Roleta';
-import Themes from './Pages/Temas/Temas';
-import Divination from './Pages/Adivinha/Adivinha';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

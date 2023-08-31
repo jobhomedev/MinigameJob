@@ -8,13 +8,11 @@ import {
   CardAdivinha,
   CardFrontAd,
   CardBackAd,
-  ErrosAcertosContainer,
-  BlinkingCard
+  ErrosAcertosContainer
 } from "./style";
 import { GameOver, GameOverContainer, GameOverOption, GameOverOptionContainer } from "../Memoria/style";
 import { useState } from "react";
 import { GoMenu } from '../Temas/style';
-import { Link } from "react-router-dom";
 import Menor from "../../assets/Menor.svg";
 import ReloadIcon from '../../assets/Reload.svg';
 import BackgroundGiz from '../../assets/backgroundGiz.jpg';
@@ -62,8 +60,6 @@ export default function Divination() {
   const [randomCard, setRandomCard] = useState(chooseRandomCard(cards));
   const [score, setScore] = useState(0);
   const [fouls, setFouls] = useState(0);
-  const [showConfetti, setShowConfetti] = useState(false);
-  const [isBlinking, setIsBlinking] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false); //estado para controlar a logica do jogo
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));//Delay para evitar que vire mais de uma carta por vez
 
@@ -86,7 +82,6 @@ export default function Divination() {
     setTimeout(async () => {
       if (clickedCard.id === randomCard.id) {
         setScore(score + 1);
-        setIsBlinking(true);
         await delay(500); // aguardar 
         setCards(sortCards());
         setRandomCard(newRandomCard);

@@ -30,4 +30,5 @@ export const ButtonRule = styled(Link)`
   padding: 0.5rem;
   text-decoration: none;
   text-align: center;
+  font-size: x-large;
 `;

@@ -1,7 +1,5 @@
-import styled, { css } from 'styled-components';
-import TemaApertoMao from "../../assets/TemaApertoMao.svg"
-import TemaAgente from "../../assets/TemaAgente.svg"
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const TitleTheme = styled.h1`
     margin: 0 0 0 0;

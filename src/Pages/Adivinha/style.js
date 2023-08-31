@@ -1,5 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
-import PecaGame from '../../assets/CardVirado.svg';
+import styled, { keyframes } from 'styled-components';
 
 const flipAnimation = keyframes`
     0% {
