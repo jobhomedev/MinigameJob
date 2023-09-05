@@ -29,12 +29,12 @@ export const GoMenu = styled(Link)`
 `;
 export const ThemeList = styled.div`
     overflow-y: auto;
-    width: min(30rem, 100%);
+    width: min(20rem, 100%);
     height: 100%;
 `;
 
 export const ThemeButtonItem = styled.div`
-    border: 0.15rem solid ${({$currentTheme}) => $currentTheme ? '#03A487' : 'transparent'};
+    border: 0.05rem solid ${({$currentTheme}) => $currentTheme ? '#03A487' : 'transparent'};
     border-radius: 0.25rem;
     margin: 1rem;
     width: calc(100% - 2rem);

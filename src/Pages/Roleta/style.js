@@ -5,7 +5,7 @@ import ButtonRoleta from '../../assets/JobTextoLogo.svg';
 
 export const Congratulations = styled.h2`
   color: #eee;
-  font-size: 50px;
+  font-size: min(7vw, 30rem);
 `
 
 export const Container = styled.div`

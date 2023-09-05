@@ -8,7 +8,7 @@ module.exports = {
       name: '@electron-forge/maker-squirrel',
       config: {
         authors: 'Matheus Boaventura Prieto',
-        description: 'Minigame JobHome.'
+        description: 'An example Electron app'
       },
     },
     {

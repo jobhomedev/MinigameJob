@@ -8,7 +8,6 @@ export const PageContainer = styled.div`
     align-items: center; /* Centralizar horizontalmente */
     text-align: center;
     margin: 0;
-    padding: 1rem; /* Adicionando um espaçamento interno */
     box-sizing: border-box; /* Garantir que o padding não afete as dimensões totais */
     justify-content: center;
 
@@ -31,4 +30,5 @@ export const Footer = styled.div`
     width: 100%;
     margin-bottom: 1rem;
     justify-content: space-between;
+    position: absolute;
 `;

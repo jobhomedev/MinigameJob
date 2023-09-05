@@ -20,6 +20,8 @@ const startLocalServer = (done) => {
   });
 };
 
+if (require('electron-squirrel-startup')) app.quit();
+
 
 function createWindow() {
   // Create the browser window.

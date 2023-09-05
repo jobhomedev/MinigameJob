@@ -55,7 +55,7 @@ export const CardBack = styled.div`
 `;
 
 export const GameOverContainer = styled.div`
-    font-size: 60px;
+    font-size: min(5vw, 60px);
     color: #efefef;
     display: flex;
     justify-content: center;

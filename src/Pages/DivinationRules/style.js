@@ -13,7 +13,9 @@ export const DivinationRulesContainer = styled.div`
 export const Content = styled.p`
     color: #fff;
     font-family: 'Hanken Grotesk';
-    font-size: x-large;
+    font-size: min(7vw, 30px);
+    padding-left: 5px;
+    padding-right: 5px;
 `
 
 export const ButtonRuleContainer = styled.div`

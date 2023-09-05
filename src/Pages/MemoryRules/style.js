@@ -14,7 +14,9 @@ export const MemoryRulesContainer = styled.div`
 export const Content = styled.p`
     color: #fff;
     font-family: 'Hanken Grotesk';
-    font-size: x-large;
+    font-size: min(7vw, 30px);
+    padding-left: 5px;
+    padding-right: 5px;
 `
 
 export const Coringa = styled.div`
@@ -23,15 +25,15 @@ export const Coringa = styled.div`
     background-size: cover;
     display: flex;
     justify-content: center;
-    width: 10rem;
+    width: min(10rem, 100%);
     height: 10rem;
-    margin: 1rem;
 `
 
 export const ButtonRuleContainer = styled.div`
     display: flex;
     flex-direction: row;
-    font-size: x-large;
+    font-size: min(7vw, 30px);
+    justify-content: center;
 `
 
 export const ButtonRule = styled(Link)`

@@ -13,13 +13,15 @@ export const RouletteRulesContainer = styled.div`
 export const Content = styled.p`
     color: #fff;
     font-family: 'Hanken Grotesk';
-    font-size: x-large;
+    font-size: min(7vw, 30px);
+    padding: 5px;
 `
 
 export const ButtonRuleContainer = styled.div`
     display: flex;
     flex-direction: row;
-    font-size: x-large;
+    font-size: min(7vw, 30px);
+    justify-content: center;
 `
 
 export const ButtonRule = styled(Link)`
