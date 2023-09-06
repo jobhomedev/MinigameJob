@@ -30,5 +30,5 @@ export const Footer = styled.div`
     width: 100%;
     margin-bottom: 1rem;
     justify-content: space-between;
-    position: absolute;
+    position: relative;
 `;
