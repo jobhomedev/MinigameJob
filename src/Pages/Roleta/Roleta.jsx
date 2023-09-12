@@ -18,19 +18,19 @@ import Confetti from 'react-confetti';
 const createPosition = (award, angle) => ({ award, angle });
 
 const positions = [
-  createPosition(0, 30 * 0),
+  createPosition(0, 30 * 0),//estrela
   ...Array(10).fill([
-    createPosition(10, 30 * 1),
+    createPosition(10, 30 * 1), // coringa
     createPosition(20, 30 * 2),
     createPosition(30, 30 * 3),
     createPosition(40, 30 * 4),
-    createPosition(50, 30 * 5),
+    createPosition(50, 30 * 5), //coringa
     createPosition(60, 30 * 6),
-    createPosition(70, 30 * 7),
+    createPosition(70, 30 * 7), //coringa
     createPosition(80, 30 * 8),
     createPosition(90, 30 * 9),
     createPosition(100, 30 * 10),
-    createPosition(110, 30 * 11),
+    createPosition(110, 30 * 11), //coringa
   ]).flat()
 ];
 
@@ -108,9 +108,9 @@ export default function Roulette() {
 
   return (
     <PageContainer>
-      { showCongratulationsPlus ? (
+      {showCongratulationsPlus ? (
         <>
-        <Confetti></Confetti>
+          <Confetti></Confetti>
           <Congratulations>
             Parabéns, você ganhou o prêmio plus.
           </Congratulations>
@@ -124,9 +124,19 @@ export default function Roulette() {
             </GoMenu>
           </Link>
         </>
+      ) : [30, 150, 210, 330].includes(currentPosition.angle) && !spinning ? (
+        <>
+          <Congratulations>Que pena, infelizmente você perdeu.</Congratulations>
+          <Link to={"/"}>
+            <GoMenu>
+              <LogoGame src={Menor} />
+              Menu
+            </GoMenu>
+          </Link>
+        </>
       ) : showCongratulations ? ( // Expressão ternária para renderizar condicionalmente a tela de parabéns
         <>
-        <Confetti></Confetti>
+          <Confetti></Confetti>
           <Congratulations>
             Parabéns, você tirou a sorte grande.
           </Congratulations>
