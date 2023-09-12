@@ -14,6 +14,7 @@ export const ThemeButtonContainer = styled.div`
     align-items: center;
     position: relative;
     height: 100%;
+    width: 80%;
     padding: 1rem;
 `;
 
@@ -26,10 +27,11 @@ export const GoMenu = styled(Link)`
     margin: 0.5rem;
     font-family: 'HKGrotesk-Regular', sans-serif;
     text-decoration: none;
+    font-size: 3rem;
 `;
 export const ThemeList = styled.div`
     overflow-y: auto;
-    width: min(20rem, 100%);
+    width: 100%;
     height: 100%;
 `;
 

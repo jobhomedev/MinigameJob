@@ -11,6 +11,7 @@ import RouletteRules from "./Pages/RouletteRules/RouletteRules.jsx";
 export default function RoutesApplication() {
     return (
         <Routes>
+            <Route exact path="" element={<Menu />} />
             <Route exact path="/" element={<Menu />} />
             <Route path="/gamememoryrules" element={<MemoryRules/>} />
             <Route path="/gamememory" element={<GameMemory />} />

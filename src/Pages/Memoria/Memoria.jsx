@@ -72,7 +72,7 @@ const GameMemory = () => {
   const [isProcessingPair, setIsProcessingPair] = useState(false);// Estado para controlar se o jogo está processando um par de cartas
 
   useEffect(() => {
-    if (time > 0 && score !== 3) {
+    if (time > 0 && score !== 1) {
       const timer = setTimeout(() => {
         setTime(time - 1);
       }, 1000); // 1000 milissegundos = 1 segundo
@@ -192,7 +192,7 @@ const GameMemory = () => {
           </GameOverContainer>
 
         </>
-      ) : score === 3 ? (
+      ) : score === 1 ? (
         // Se o jogador fez 3 pontos, exiba uma mensagem de parabéns
         <>
 
@@ -214,7 +214,7 @@ const GameMemory = () => {
         </>
       ) : (
         <>
-          <h1>Jogo da Memória</h1>
+          <h1 style={{fontSize: "5rem"}}>Jogo da Memória</h1>
 
           <LifesAndTimerContainer>
 

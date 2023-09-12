@@ -166,7 +166,7 @@ export default function Divination() {
 
         <PageContainer>
 
-          <h1>Encontre a carta</h1>
+          <h1 style={{ fontSize: "4rem" }}>Encontre a carta</h1>
 
           <ErrosAcertosContainer>
 
@@ -200,7 +200,7 @@ export default function Divination() {
 
           <Footer >
             <GoMenu to={"/"}>
-              <LogoGame src={Menor} />
+              <LogoGame src={Menor} style={{ width: "3rem" }} />
               Menu
             </GoMenu>
 

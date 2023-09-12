@@ -42,7 +42,7 @@ export default function Menu() {
             </ButtonsMenu>
 
             <Link to={"themes"}>
-                <GoThemes><LogoGame src={iconeTema} />Temas</GoThemes>
+                <GoThemes><LogoGame style={{width: "3rem"}} src={iconeTema} />Temas</GoThemes>
             </Link>
 
         </PageContainer>

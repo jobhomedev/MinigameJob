@@ -17,7 +17,7 @@ export const GameContainer = styled.div`
     grid-template-rows: repeat(3, auto);
     gap: 1rem;
     padding: 1rem;
-    width: min(30rem, 100%);
+    width:  100%;
 `
 
 export const Card = styled.div`
@@ -98,7 +98,7 @@ export const LifesAndTimerContainer = styled.div`
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    width: min(30rem, 100%);
+    width: 100%;
 
 `
 
@@ -109,6 +109,7 @@ export const LifesAndTimer = styled.div`
     right: 1rem;
     position: relative;
     color: #efefef;
+    font-size: 2.5rem;
 `
 
 export const LogoLifes = styled.img`
@@ -116,7 +117,7 @@ export const LogoLifes = styled.img`
 `
 
 export const Reload = styled.a`
-    
+    font-size: 2.5rem;
     color: #eee;
     display: flex;
     align-items: center;

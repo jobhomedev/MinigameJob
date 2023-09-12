@@ -12,12 +12,12 @@ const createTheme = (description, image) => ({ description, image });
 
 // Lista de plano de fundo
 const themes = [
-    createTheme('Atendente analisando gráficos', backgroundGiz),
-    createTheme('Atendente analisando gráficos', backgroundAtendenteComPlanilha),
-    createTheme('Atendente analisando gráficos', backgroundAtendenteSegurandoRedset),
-    createTheme('Atendente analisando gráficos', backgroundAtendneteEmFrenteAJanela),
-    createTheme('Atendente analisando gráficos', backgroundEmpresariosSeCumprimentando),
-    createTheme('Atendente analisando gráficos', backgroundMicrofones),
+    createTheme('Parede com Giz', backgroundGiz),
+    createTheme('Atendente com planilha', backgroundAtendenteComPlanilha),
+    createTheme('Atendente segurando redset', backgroundAtendenteSegurandoRedset),
+    createTheme('Atendente em frente a janela', backgroundAtendneteEmFrenteAJanela),
+    createTheme('Empresários se cumprimentando', backgroundEmpresariosSeCumprimentando),
+    createTheme('Microfones', backgroundMicrofones),
 ];
 
 export default themes;

@@ -14,7 +14,7 @@ export const MemoryRulesContainer = styled.div`
 export const Content = styled.p`
     color: #fff;
     font-family: 'Hanken Grotesk';
-    font-size: min(7vw, 30px);
+    font-size: 2.5rem;
     padding-left: 5px;
     padding-right: 5px;
 `

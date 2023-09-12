@@ -13,8 +13,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  width: min(95vw, 30rem);
-  height: min(95vw, 30rem);
+  width: 95vw;
+  height: 95vw;
   margin: 0 auto;
   overflow: hidden;
   color: #eee;
@@ -70,6 +70,7 @@ export const GoMenu = styled.div`
   display: flex;
   align-items: center;
   margin: 0.5rem;
+  font-size: 2.5rem;
 `;
 
 export const LogoGame = styled.img`

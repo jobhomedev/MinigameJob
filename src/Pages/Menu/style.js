@@ -12,7 +12,7 @@ export const LogoJobhomeContainer = styled.div`
 `;
 
 export const LogoJobhome = styled.img`
-    width: min(100%, 20rem);
+    width: 100%;
 `;
 
 export const PhraseJobhome = styled.div`
@@ -20,6 +20,7 @@ export const PhraseJobhome = styled.div`
     color: #fff;
     width: auto;
     font-family: 'HKGrotesk-Regular', sans-serif;
+    font-size: 4rem;
 `;
 
 export const ButtonsMenu = styled.div`
@@ -30,7 +31,7 @@ export const ButtonsMenu = styled.div`
     position: relative;
     gap: 1rem;
     padding: 1rem;
-    width: min(100%, 27rem);
+    width: 80%;
     margin: 0 auto;
     `;
 
@@ -39,7 +40,7 @@ export const ButtonGame = styled(Link)`
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 6rem;
+    height: 30vw;
     border-radius: 0.25rem;
     border: none;
     cursor: pointer;
@@ -67,7 +68,7 @@ export const Description = styled.div`
     padding: 1rem;
     color: #4f4f4f;
     font-family: 'HKGrotesk-Regular', sans-serif;
-
+    font-size: 3rem;
 `;
 
 export const GoThemes = styled.a`
@@ -78,4 +79,5 @@ export const GoThemes = styled.a`
     display: flex;
     align-items: center;
     margin: 0.5rem;
+    font-size: 3rem;
 `;

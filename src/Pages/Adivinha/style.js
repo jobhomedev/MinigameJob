@@ -17,7 +17,8 @@ export const GameContainerAdivinha = styled.div`
     padding: 1rem;
     justify-items: center;
     justify-content: center;
-    width: min(30rem, 100%);
+    width: 100%;
+    margin-top: 10vw;
 `
 
 export const CardEscolhidoContainer = styled.div`
@@ -78,6 +79,7 @@ export const ErrosAcertosContainer = styled.div`
     padding: 1rem;
     gap: 0.5rem;
     color: #fff;
+    font-size: 2.5rem;
 `
 
 export const Acertos = styled.img`
