@@ -27,7 +27,7 @@ export const GoMenu = styled(Link)`
     margin: 0.5rem;
     font-family: 'HKGrotesk-Regular', sans-serif;
     text-decoration: none;
-    font-size: 3rem;
+    font-size: 2.5rem;
 `;
 export const ThemeList = styled.div`
     overflow-y: auto;

@@ -32,7 +32,7 @@ export const Coringa = styled.div`
 export const ButtonRuleContainer = styled.div`
     display: flex;
     flex-direction: row;
-    font-size: min(7vw, 30px);
+    font-size: 2rem;
     justify-content: center;
 `
 
