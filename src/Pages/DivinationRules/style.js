@@ -13,7 +13,7 @@ export const DivinationRulesContainer = styled.div`
 export const Content = styled.p`
     color: #fff;
     font-family: 'Hanken Grotesk';
-    font-size: min(7vw, 30px);
+    font-size: 2.5rem;
     padding-left: 5px;
     padding-right: 5px;
 `
@@ -22,6 +22,7 @@ export const ButtonRuleContainer = styled.div`
     display: flex;
     flex-direction: row;
     font-family: 'Hanken Grotesk';
+    font-size: 2rem;
 `
 
 export const ButtonRule = styled(Link)`
@@ -32,5 +33,4 @@ export const ButtonRule = styled(Link)`
   padding: 0.5rem;
   text-decoration: none;
   text-align: center;
-  font-size: x-large;
 `;
