@@ -124,7 +124,7 @@ export default function Roulette() {
             </GoMenu>
           </Link>
         </>
-      ) : [30, 150, 210, 330].includes(currentPosition.angle) && !spinning ? (
+      ) : [30, 60, 120, 150, 180, 210, 240, 300, 330].includes(currentPosition.angle) && !spinning ? (
         <>
           <Congratulations>Que pena, infelizmente você perdeu.</Congratulations>
           <Link to={"/"}>
